@@ -155,18 +155,64 @@
   </div>
 
   <!-- ABOUT / PASS AI -->
+  <!-- OUR VISION -->
+  <div class="section-bg" style="border-bottom:none;">
+    <div class="section">
+      <div class="vision-section">
+        <div class="vision-section-text">
+          <div class="eyebrow">Our Vision</div>
+          <h2 class="vision-statement">검수 가능한 AI가<br />K-수능 출제 표준이 됩니다</h2>
+          <p class="vision-body">2028학년도부터 수능 영어 AI 출제가 공식화됩니다. 정책·시장·기술이 동시에 움직이는 이 18개월 안에 자리를 잡는 회사가 향후 5년의 시장을 가져갑니다. 뉴런소프트는 그 표준을 만들고, 가장 먼저 도착하는 회사가 되고자 합니다.</p>
+        </div>
+        <div class="vision-section-graphic" aria-hidden="true">
+          <svg viewBox="0 0 240 320" width="100%" style="max-width:320px">
+            <line x1="120" y1="30" x2="120" y2="290" stroke="rgba(255,255,255,0.14)" stroke-width="1" stroke-dasharray="3 5" />
+            <g font-family="Inter, sans-serif" font-size="11" fill="rgba(255,255,255,0.55)">
+              <circle cx="120" cy="30" r="6" fill="rgba(255,255,255,0.25)" />
+              <text x="138" y="34">INPUT</text>
+              <circle cx="120" cy="95" r="6" fill="rgba(255,255,255,0.35)" />
+              <text x="138" y="99">GENERATE</text>
+              <circle cx="120" cy="160" r="6" fill="rgba(255,255,255,0.5)" />
+              <text x="138" y="164">SOLVE</text>
+              <circle cx="120" cy="225" r="6" fill="rgba(255,255,255,0.7)" />
+              <text x="138" y="229">VALIDATE</text>
+              <circle cx="120" cy="290" r="7" fill="#ffffff" class="curve-dot-pulse" />
+              <text x="138" y="294" fill="#ffffff" font-weight="700">ACCEPT</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT PASS AI -->
   <div class="section-bg">
     <div class="section">
-      <div class="eyebrow">About Pass AI</div>
-      <h2 class="section-title">"생성"이 아니라 평가 공정.<br />5단계로 압축한 출제 파이프라인.</h2>
-      <p class="section-body">일반 LLM은 정답이 하나로 결정되지 않거나, 교과과정 밖 도구를 써서 풀이하는 문제를 그대로 통과시킵니다. Pass AI는 각 단계가 hard gate를 가진 제약 생성 파이프라인으로, 통과하지 못한 문항은 그 자리에서 폐기되고 사유가 추적됩니다.</p>
+      <div class="vision-block">
+        <div class="eyebrow">About Pass AI</div>
+        <h2 class="vision-statement">"생성"이 아니라 평가 공정입니다</h2>
+        <p class="vision-body">일반 LLM은 정답이 하나로 결정되지 않거나, 교과과정 밖 도구로 풀이하는 문제를 그대로 통과시킵니다. Pass AI는 각 단계가 hard gate를 가진 제약 생성 파이프라인입니다.</p>
 
-      <div class="pipeline-grid">
-        <div class="pipeline-card"><div class="pipeline-num">01 · INPUT</div><div class="pipeline-title">유형·난도·과업</div><div class="pipeline-desc">수능 유형별 형식 사양과 정답 슬롯을 사전 제약</div></div>
-        <div class="pipeline-card"><div class="pipeline-num">02 · GENERATE</div><div class="pipeline-title">도메인 적응 LLM</div><div class="pipeline-desc">Kanana·Qwen 기반, 단원별 어댑터로 지문·문항 생성</div></div>
-        <div class="pipeline-card"><div class="pipeline-num">03 · SOLVE</div><div class="pipeline-title">독립 풀이 검산</div><div class="pipeline-desc">별도 Solver가 다시 풀어 정답 하나로 결정되는지 검증</div></div>
-        <div class="pipeline-card"><div class="pipeline-num">04 · VALIDATE</div><div class="pipeline-title">형식·정답·유형 검수</div><div class="pipeline-desc">Deterministic Validator가 hard reject 신호 발신</div></div>
-        <div class="pipeline-card"><div class="pipeline-num">05 · REVIEW</div><div class="pipeline-title">ACCEPT/HOLD/REJECT</div><div class="pipeline-desc">사유와 함께 최종 분류, HOLD는 사람 검수 큐로</div></div>
+        <div class="vision-features">
+          <div class="vision-feature">
+            <div class="vision-feature-icon">G</div>
+            <div class="vision-feature-label">Generate</div>
+            <div class="vision-feature-title">도메인 적응 LLM이 만듭니다</div>
+            <div class="vision-feature-desc">Kanana·Qwen 기반, 단원별 어댑터로 유형·난도가 제약된 지문과 문항을 생성합니다.</div>
+          </div>
+          <div class="vision-feature">
+            <div class="vision-feature-icon">V</div>
+            <div class="vision-feature-label">Verify</div>
+            <div class="vision-feature-title">독립 모델이 다시 풀어봅니다</div>
+            <div class="vision-feature-desc">별도 Solver와 Validator가 정답이 하나로 결정되는지, 교과과정 안의 풀이인지 검증합니다.</div>
+          </div>
+          <div class="vision-feature">
+            <div class="vision-feature-icon">R</div>
+            <div class="vision-feature-label">Review</div>
+            <div class="vision-feature-title">ACCEPT·HOLD·REJECT로 분류합니다</div>
+            <div class="vision-feature-desc">통과 못한 문항은 사유와 함께 그 자리에서 폐기되고, 기록은 전량 추적 가능합니다.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
