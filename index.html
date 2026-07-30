@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>뉴런소프트 채용 | Pass AI로 K-수능 출제 표준을 만듭니다</title>
+  <meta name="description" content="검수 가능한 AI로 K-수능 모의고사를 생성하는 Pass AI 엔진 팀. 뉴런소프트와 함께할 AI 연구원·PO·개발자·마케터를 찾습니다." />
+  <link rel="preconnect" href="https://fonts.googleapis.com/" />
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo"><span class="nav-logo-dot"></span> 뉴런소프트</a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active">홈</a>
+      <a href="positions/index.html" class="nav-link">채용 포지션</a>
+      <a href="positions/index.html" class="btn-apply">지원하기</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">풀잇(PullIt) 팀 집중 채용 중</div>
+    <h1 class="hero-title">검수 가능한 AI가<br />K-수능 출제 표준이 됩니다</h1>
+    <p class="hero-desc">
+      <span class="hero-desc-highlight">교과과정 검증 · 정답 단일성 · 해설 정합성</span>을 단계별로 통제하는 AI 출제 엔진 <b>Pass AI</b>.<br />
+      학생 개개인에게 맞는 문제를 매일 추천하는 <b>풀잇(PullIt)</b>을 함께 만들 동료를 찾습니다.
+    </p>
+    <div class="hero-cta">
+      <a href="positions/index.html" class="btn-primary">포지션 보기</a>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat"><div class="stat-num">6.3x</div><div class="stat-lbl">2025→2026 매출 성장</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-lbl">사업축 (패스노트·풀잇·패스서점)</div></div>
+      <div class="stat"><div class="stat-num">1.27억+</div><div class="stat-lbl">2026년 외부 계약(대성마이맥·이앤오즈)</div></div>
+    </div>
+    <div class="badge-row">
+      <span class="badge">TIPS 선정</span>
+      <span class="badge">서울 AI 허브 고성능 컴퓨팅 지원사업 선정</span>
+      <span class="badge">대성마이맥 계약</span>
+      <span class="badge">신용보증기금 Nest 17기 선정</span>
+    </div>
+  </section>
+
+  <!-- ABOUT / PASS AI -->
+  <div class="section-bg">
+    <div class="section">
+      <div class="eyebrow">About Pass AI</div>
+      <h2 class="section-title">"생성"이 아니라 평가 공정.<br />5단계로 압축한 출제 파이프라인.</h2>
+      <p class="section-body">일반 LLM은 정답이 하나로 결정되지 않거나, 교과과정 밖 도구를 써서 풀이하는 문제를 그대로 통과시킵니다. Pass AI는 각 단계가 hard gate를 가진 제약 생성 파이프라인으로, 통과하지 못한 문항은 그 자리에서 폐기되고 사유가 추적됩니다.</p>
+
+      <div class="pipeline-grid">
+        <div class="pipeline-card"><div class="pipeline-num">01 · INPUT</div><div class="pipeline-title">유형·난도·과업</div><div class="pipeline-desc">수능 유형별 형식 사양과 정답 슬롯을 사전 제약</div></div>
+        <div class="pipeline-card"><div class="pipeline-num">02 · GENERATE</div><div class="pipeline-title">도메인 적응 LLM</div><div class="pipeline-desc">Kanana·Qwen 기반, 단원별 어댑터로 지문·문항 생성</div></div>
+        <div class="pipeline-card"><div class="pipeline-num">03 · SOLVE</div><div class="pipeline-title">독립 풀이 검산</div><div class="pipeline-desc">별도 Solver가 다시 풀어 정답 하나로 결정되는지 검증</div></div>
+        <div class="pipeline-card"><div class="pipeline-num">04 · VALIDATE</div><div class="pipeline-title">형식·정답·유형 검수</div><div class="pipeline-desc">Deterministic Validator가 hard reject 신호 발신</div></div>
+        <div class="pipeline-card"><div class="pipeline-num">05 · REVIEW</div><div class="pipeline-title">ACCEPT/HOLD/REJECT</div><div class="pipeline-desc">사유와 함께 최종 분류, HOLD는 사람 검수 큐로</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="section">
+    <div class="eyebrow">What We Build</div>
+    <h2 class="section-title">한 회사 안에 필기앱·콘텐츠·유통망이<br />다 있습니다</h2>
+    <p class="section-body">필기앱이 학습 로그를 모으고, AI가 모의고사를 생성하고, 자사 서점이 유통합니다. 세 축이 서로의 데이터를 순환시키는 구조입니다.</p>
+
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-label">Application</div>
+        <div class="pillar-title">패스노트</div>
+        <div class="pillar-desc">수험생이 매일 여는 화면. 전자책·필기·모의고사 올인원. 레이어 분리 필기(PDF+사용자 필기 독립 저장), End-to-End DRM, AI 자동채점. 대성마이맥 화이트라벨 계약으로 확장 중.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-label">Content</div>
+        <div class="pillar-title">AI 모의고사 · 풀잇</div>
+        <div class="pillar-desc">Pass AI 출제 엔진 기반, 검수 가능한 문항을 무한 생성. 학생 개인화 추천·약점진단으로 이어지는 자체 서비스 풀잇을 7월 말 오픈 목표로 개발 중.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-label">Distribution</div>
+        <div class="pillar-title">패스서점</div>
+        <div class="pillar-desc">대치동·노량진 타겟 온오프 통합 유통망. 분철·스캔 서비스로 학습 로그를 수집해 출제 엔진의 데이터로 순환시킵니다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROOF POINTS -->
+  <div class="section-bg">
+    <div class="section">
+      <div class="eyebrow">Real Traction</div>
+      <h2 class="section-title">작은 팀이 만드는<br />검증된 계약과 성장</h2>
+      <div class="proof-grid">
+        <div class="proof-card">
+          <div class="proof-eyebrow">계약</div>
+          <div class="proof-headline">대성마이맥 화이트라벨 계약</div>
+          <div class="proof-body">패스노트 앱을 대성마이맥 전용으로 화이트라벨화하는 외주용역 계약을 체결했습니다. 1차 납품은 9월 예정으로, 실제 대형 교육기업과의 협업이 진행 중입니다.</div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-eyebrow">계약</div>
+          <div class="proof-headline">이앤오즈 AI 문항 납품</div>
+          <div class="proof-body">자체 AI 문항 생성 역량을 B2B로 공급하는 계약을 체결했습니다. 자체 서비스(B2C)뿐 아니라 문항 납품(B2B)까지 채널을 넓히고 있습니다.</div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-eyebrow">인프라</div>
+          <div class="proof-headline">서울 AI 허브 고성능 컴퓨팅 지원사업 선정</div>
+          <div class="proof-body">H100 GPU 8장 규모의 클라우드 자원을 확보해, Pass AI 수학 파이프라인을 8B/7B에서 90B급으로 스케일업하는 PoC를 진행합니다.</div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-eyebrow">성장</div>
+          <div class="proof-headline">2025 → 2026, 매출 6배 성장</div>
+          <div class="proof-body">2025년 단일 제품 매출에서 2026년 패스노트·AI모의고사·패스서점 세 개 사업축으로 확장하며 매출 구조를 다각화했습니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPEN POSITIONS PREVIEW -->
+  <div class="section">
+    <div class="eyebrow">Join Us</div>
+    <h2 class="section-title">지금, 풀잇 팀에 합류할<br />4개 포지션을 찾고 있습니다</h2>
+    <p class="section-body">7월 말 오픈하는 AI 모의고사 서비스 풀잇. 기획부터 개발, 연구, 마케팅까지 초기 단계부터 함께 만들어갈 동료를 기다립니다.</p>
+
+    <div class="positions-list">
+      <a href="positions/ai-researcher/index.html" class="position-card">
+        <div class="position-main">
+          <div class="position-team">AI Research</div>
+          <div class="position-title">AI 연구원 (개인화 추천·학습 데이터 분석)</div>
+          <div class="position-tagline">학생 개개인의 약점을 진단하고 다음 문제를 추천하는 알고리즘</div>
+        </div>
+        <div class="position-arrow">→</div>
+      </a>
+      <a href="positions/po/index.html" class="position-card">
+        <div class="position-main">
+          <div class="position-team">Product</div>
+          <div class="position-title">PO (풀잇 서비스 기획·운영)</div>
+          <div class="position-tagline">풀잇의 로드맵과 우선순위를 온전히 책임질 PO</div>
+        </div>
+        <div class="position-arrow">→</div>
+      </a>
+      <a href="positions/developer/index.html" class="position-card">
+        <div class="position-main">
+          <div class="position-team">Engineering</div>
+          <div class="position-title">개발자 (풀잇 웹서비스 풀스택)</div>
+          <div class="position-tagline">기획 단계부터 함께, 서비스의 뼈대를 직접 짜는 개발</div>
+        </div>
+        <div class="position-arrow">→</div>
+      </a>
+      <a href="positions/marketer/index.html" class="position-card">
+        <div class="position-main">
+          <div class="position-team">Growth</div>
+          <div class="position-title">마케터 (풀잇 초기 그로스·퍼포먼스)</div>
+          <div class="position-tagline">7월 말 오픈, 풀잇의 첫 사용자를 데려올 마케팅</div>
+        </div>
+        <div class="position-arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">뉴런소프트</div>
+    <div class="footer-meta">
+      주식회사 뉴런소프트 · 서울특별시 관악구 봉천로 545, 서울창업센터 관악<br />
+      사업자등록번호 591-88-03234
+    </div>
+    <div class="footer-links">
+      <a href="index.html">홈</a>
+      <a href="positions/index.html">채용 포지션</a>
+    </div>
+  </footer>
+
+</body>
+</html>
