@@ -34,10 +34,62 @@
     </div>
 
     <div class="stats-bar">
-      <div class="stat"><div class="stat-num">6.3x</div><div class="stat-lbl">2025→2026 매출 성장</div></div>
       <div class="stat"><div class="stat-num">3</div><div class="stat-lbl">사업축 (패스노트·풀잇·패스서점)</div></div>
       <div class="stat"><div class="stat-num">1.27억+</div><div class="stat-lbl">2026년 외부 계약(대성마이맥·이앤오즈)</div></div>
     </div>
+
+    <!-- REVENUE GROWTH CHART -->
+    <div class="viz-root chart-card" data-palette="#2a78d6,#eb6834,#1baf7a">
+      <div class="chart-head">
+        <div class="chart-title">2025 → 2026 매출 성장</div>
+        <div class="chart-headline">6.3×</div>
+      </div>
+      <div class="chart-body">
+        <svg class="growth-svg" viewBox="0 0 300 210" role="img" aria-label="2025년 매출 4,255만원에서 2026년 매출 26,427만원으로 성장. 2026년은 패스노트 8,200만원, AI모의고사(예상) 1억 3,000만원, 패스서점 5,227만원으로 구성">
+          <line x1="30" y1="178" x2="270" y2="178" class="chart-baseline" />
+
+          <!-- 2025 bar: 패스노트만 -->
+          <g class="seg" tabindex="0" data-label="2025 · 패스노트" data-value="4,255만원">
+            <rect x="75" y="152" width="22" height="26" rx="3" class="s1" />
+          </g>
+          <text x="86" y="140" class="chart-total">4,255만</text>
+          <text x="86" y="196" class="chart-xlabel">2025</text>
+
+          <!-- 2026 bar: 패스노트 → AI모의고사 → 패스서점 (쌓기, 아래부터, 2px 간격) -->
+          <g class="seg" tabindex="0" data-label="2026 · 패스노트" data-value="8,200만원">
+            <rect x="203" y="130" width="22" height="48" class="s1" />
+          </g>
+          <g class="seg" tabindex="0" data-label="2026 · AI모의고사(예상)" data-value="1억 3,000만원">
+            <rect x="203" y="51" width="22" height="77" class="s2" />
+          </g>
+          <g class="seg" tabindex="0" data-label="2026 · 패스서점" data-value="5,227만원">
+            <rect x="203" y="18" width="22" height="31" rx="3" class="s3" />
+          </g>
+          <text x="214" y="9" class="chart-total">26,427만</text>
+          <text x="214" y="196" class="chart-xlabel">2026 YTD</text>
+        </svg>
+
+        <div class="chart-tooltip" id="growthTooltip" role="status" aria-live="polite"></div>
+      </div>
+
+      <div class="chart-legend">
+        <span><i class="sw s1"></i>패스노트</span>
+        <span><i class="sw s2"></i>AI모의고사(예상)</span>
+        <span><i class="sw s3"></i>패스서점</span>
+      </div>
+
+      <details class="chart-table-toggle">
+        <summary>표로 보기</summary>
+        <table class="chart-table">
+          <thead><tr><th>연도</th><th>패스노트</th><th>AI모의고사</th><th>패스서점</th><th>합계</th></tr></thead>
+          <tbody>
+            <tr><td>2025</td><td>4,255만</td><td>—</td><td>—</td><td>4,255만</td></tr>
+            <tr><td>2026 YTD</td><td>8,200만</td><td>1억 3,000만(예상)</td><td>5,227만</td><td>26,427만</td></tr>
+          </tbody>
+        </table>
+      </details>
+    </div>
+
     <div class="badge-row">
       <span class="badge">TIPS 선정</span>
       <span class="badge">서울 AI 허브 고성능 컴퓨팅 지원사업 선정</span>
@@ -45,6 +97,28 @@
       <span class="badge">신용보증기금 Nest 17기 선정</span>
     </div>
   </section>
+
+  <script>
+    (function () {
+      var tip = document.getElementById('growthTooltip');
+      if (!tip) return;
+      document.querySelectorAll('.chart-card .seg').forEach(function (seg) {
+        function show(e) {
+          tip.textContent = seg.dataset.label + ' — ' + seg.dataset.value;
+          tip.classList.add('is-visible');
+          seg.classList.add('is-hot');
+        }
+        function hide() {
+          tip.classList.remove('is-visible');
+          seg.classList.remove('is-hot');
+        }
+        seg.addEventListener('pointerenter', show);
+        seg.addEventListener('pointerleave', hide);
+        seg.addEventListener('focus', show);
+        seg.addEventListener('blur', hide);
+      });
+    })();
+  </script>
 
   <!-- ABOUT / PASS AI -->
   <div class="section-bg">
