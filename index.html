@@ -101,11 +101,10 @@
         var fill = path + ' L ' + last[0].toFixed(1) + ' ' + axisY + ' L ' + pts[0][0].toFixed(1) + ' ' + axisY + ' Z';
 
         var dots = milestones.map(function (m, i) {
+          if (!m.anchor) return '';
           var p = pts[i];
-          var r = m.anchor ? 4.5 : 3;
-          var cls = m.anchor ? 'curve-dot curve-dot--anchor' : 'curve-dot';
           var label = m.label + ' · ' + m.date;
-          return '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="' + r + '" class="' + cls + '"><title>' + label + '</title></circle>';
+          return '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="4.5" class="curve-dot curve-dot--anchor"><title>' + label + '</title></circle>';
         }).join('');
 
         var lastAnchor = milestones[milestones.length - 1];
