@@ -90,13 +90,29 @@
       </details>
     </div>
 
-    <div class="badge-row">
-      <span class="badge">TIPS 선정</span>
-      <span class="badge">서울 AI 허브 고성능 컴퓨팅 지원사업 선정</span>
-      <span class="badge">대성마이맥 계약</span>
-      <span class="badge">신용보증기금 Nest 17기 선정</span>
-    </div>
   </section>
+
+  <!-- MARQUEE: 선정·협력 -->
+  <div class="marquee" aria-label="선정 및 협력 현황">
+    <div class="marquee-label">Selected & Backed by</div>
+    <div class="marquee-track-wrap">
+      <div class="marquee-track">
+        <span class="marquee-item">TIPS 선정</span>
+        <span class="marquee-item">서울 AI 허브 고성능 컴퓨팅 지원사업</span>
+        <span class="marquee-item">대성마이맥 계약</span>
+        <span class="marquee-item">이앤오즈 문항 납품 계약</span>
+        <span class="marquee-item">신용보증기금 Nest 17기</span>
+        <span class="marquee-item">초기창업패키지 선정</span>
+        <!-- duplicate for seamless loop -->
+        <span class="marquee-item" aria-hidden="true">TIPS 선정</span>
+        <span class="marquee-item" aria-hidden="true">서울 AI 허브 고성능 컴퓨팅 지원사업</span>
+        <span class="marquee-item" aria-hidden="true">대성마이맥 계약</span>
+        <span class="marquee-item" aria-hidden="true">이앤오즈 문항 납품 계약</span>
+        <span class="marquee-item" aria-hidden="true">신용보증기금 Nest 17기</span>
+        <span class="marquee-item" aria-hidden="true">초기창업패키지 선정</span>
+      </div>
+    </div>
+  </div>
 
   <script>
     (function () {
@@ -133,6 +149,32 @@
         <div class="pipeline-card"><div class="pipeline-num">03 · SOLVE</div><div class="pipeline-title">독립 풀이 검산</div><div class="pipeline-desc">별도 Solver가 다시 풀어 정답 하나로 결정되는지 검증</div></div>
         <div class="pipeline-card"><div class="pipeline-num">04 · VALIDATE</div><div class="pipeline-title">형식·정답·유형 검수</div><div class="pipeline-desc">Deterministic Validator가 hard reject 신호 발신</div></div>
         <div class="pipeline-card"><div class="pipeline-num">05 · REVIEW</div><div class="pipeline-title">ACCEPT/HOLD/REJECT</div><div class="pipeline-desc">사유와 함께 최종 분류, HOLD는 사람 검수 큐로</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARISON -->
+  <div class="section">
+    <div class="eyebrow">Differentiation</div>
+    <h2 class="section-title">"ChatGPT로 만들면 되는 거 아닌가요?"<br />정답은 "안 됩니다"입니다.</h2>
+    <p class="section-body">일반 LLM은 평가 공정이 아닙니다. 풀이가 교과과정 안에서 이루어지는지, 정답이 하나로 결정되는지 — 단계별 검수기가 필수입니다.</p>
+
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-col-label">일반 LLM (ChatGPT·Gemini API)</div>
+        <div class="compare-row compare-no"><span class="compare-mark">✕</span>교과과정 위반 — 배우지 않은 도구로 풀이</div>
+        <div class="compare-row compare-no"><span class="compare-mark">✕</span>복수정답 — 조건만으로 정답이 하나로 안 정해짐</div>
+        <div class="compare-row compare-no"><span class="compare-mark">✕</span>해설-정답 불일치</div>
+        <div class="compare-row compare-no"><span class="compare-mark">✕</span>유형 무시 — 빈칸·순서·삽입 등 형식 미반영</div>
+        <div class="compare-row compare-no"><span class="compare-mark">✕</span>사후검증 불가 — 왜 그 답인지 추적 불가</div>
+      </div>
+      <div class="compare-col compare-col--highlight">
+        <div class="compare-col-label">뉴런소프트 Pass AI</div>
+        <div class="compare-row compare-yes"><span class="compare-mark">✓</span>Curriculum-Bounded — 풀이 개념을 교과과정 그래프에 매핑해 검수</div>
+        <div class="compare-row compare-yes"><span class="compare-mark">✓</span>Deterministic Validator — 선택지 수·정답 라벨 hard gate 자동 통제</div>
+        <div class="compare-row compare-yes"><span class="compare-mark">✓</span>Solver-Verified — 독립 풀이 모델이 정답값 교차 검증</div>
+        <div class="compare-row compare-yes"><span class="compare-mark">✓</span>Task-Format Validator — 유형별 별도 검수기</div>
+        <div class="compare-row compare-yes"><span class="compare-mark">✓</span>Reject Reason Logging — 폐기 사유 전량 추적 가능</div>
       </div>
     </div>
   </div>
