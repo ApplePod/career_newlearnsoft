@@ -309,6 +309,13 @@ body { padding-top: 64px; }
 .curve-dot-pulse { animation: curveGlow 1.8s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .curve-dot-pulse { animation: none; } }
 
+/* 은은한 별빛 + 궤도 배경 (장식) */
+@keyframes curveTwinkle { 0%, 100% { opacity: 0.12; } 50% { opacity: 0.65; } }
+.curve-star { fill: #ffffff; animation: curveTwinkle 4s ease-in-out infinite; }
+.curve-orbit-ring { fill: none; stroke: rgba(255, 255, 255, 0.1); stroke-width: 1; stroke-dasharray: 2 4; }
+.curve-orbit-ring--faint { stroke: rgba(255, 255, 255, 0.05); }
+.curve-travel { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)); }
+
 .chart-table-toggle { padding: 0 24px 20px; margin-top: 8px; }
 .chart-table-toggle summary { font-size: 11.5px; color: var(--gray-500); cursor: pointer; font-weight: 600; }
 .chart-table-toggle summary:hover { color: var(--gray-300); }

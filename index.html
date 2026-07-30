@@ -75,6 +75,11 @@
         { x: 1.00, y: 1.00, label: '2026 YTD 매출 26,427만원', date: '2026.07', anchor: true }
       ];
 
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var starSeeds = Array.from({ length: 14 }, function () {
+        return { rx: Math.random(), ry: Math.random(), r: 0.5 + Math.random() * 1.1, dur: (2.6 + Math.random() * 3.2).toFixed(2), delay: (Math.random() * 4).toFixed(2) };
+      });
+
       function render() {
         var W = container.offsetWidth;
         if (!W) return;
@@ -107,15 +112,39 @@
         var firstAnchorIdx = milestones.findIndex(function (m) { return m.anchor; });
         var firstAnchorPt = pts[firstAnchorIdx];
 
+        // 은은한 별빛 배경 (장식용, 데이터 아님)
+        var stars = starSeeds.map(function (s) {
+          var cx = (P.left + s.rx * cW).toFixed(1), cy = (P.top * 0.3 + s.ry * cH * 0.9).toFixed(1);
+          var style = reduceMotion ? '' : ' style="animation-duration:' + s.dur + 's;animation-delay:-' + s.delay + 's"';
+          return '<circle cx="' + cx + '" cy="' + cy + '" r="' + s.r.toFixed(2) + '" class="curve-star"' + style + '/>';
+        }).join('');
+
+        // 도착점 기준 태양계풍 궤도 링 (장식용)
+        var orbit = '<g class="curve-orbit" transform="translate(' + last[0].toFixed(1) + ',' + last[1].toFixed(1) + ')">' +
+          '<circle r="14" class="curve-orbit-ring" /><circle r="26" class="curve-orbit-ring" /><circle r="40" class="curve-orbit-ring curve-orbit-ring--faint" />' +
+          '</g>';
+
+        // 곡선을 따라 흐르는 빛
+        var travelLight = reduceMotion ? '' :
+          '<circle r="3.2" fill="#ffffff" class="curve-travel">' +
+          '<animateMotion dur="4.5s" repeatCount="indefinite" rotate="auto" path="' + path + '"/>' +
+          '</circle>';
+
         container.innerHTML =
           '<svg xmlns="http://www.w3.org/2000/svg" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" style="display:block">' +
-          '<defs><linearGradient id="rcG" x1="0" y1="0" x2="0" y2="1">' +
+          '<defs>' +
+          '<linearGradient id="rcG" x1="0" y1="0" x2="0" y2="1">' +
           '<stop offset="0%" stop-color="var(--accent)" stop-opacity="0.22"/>' +
           '<stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>' +
-          '</linearGradient></defs>' +
+          '</linearGradient>' +
+          '<filter id="rcBlur" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="3.5"/></filter>' +
+          '</defs>' +
+          orbit +
+          stars +
           '<path d="' + fill + '" fill="url(#rcG)"/>' +
           '<path d="' + path + '" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="curve-line"/>' +
           dots +
+          travelLight +
           '<circle cx="' + last[0].toFixed(1) + '" cy="' + last[1].toFixed(1) + '" r="5" fill="var(--accent)" class="curve-dot-pulse"/>' +
           '<text x="' + firstAnchorPt[0].toFixed(1) + '" y="' + (firstAnchorPt[1] - 12).toFixed(1) + '" class="curve-label" text-anchor="middle">4,255만</text>' +
           '<text x="' + last[0].toFixed(1) + '" y="' + (last[1] - 14).toFixed(1) + '" class="curve-label" text-anchor="end">26,427만</text>' +
