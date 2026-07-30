@@ -33,64 +33,104 @@
       <a href="positions/index.html" class="btn-primary">포지션 보기</a>
     </div>
 
-    <div class="stats-bar">
-      <div class="stat"><div class="stat-num">3</div><div class="stat-lbl">사업축 (패스노트·풀잇·패스서점)</div></div>
-      <div class="stat"><div class="stat-num">1.27억+</div><div class="stat-lbl">2026년 외부 계약(대성마이맥·이앤오즈)</div></div>
-    </div>
-
-    <!-- REVENUE GROWTH CHART -->
-    <div class="viz-root chart-card" data-palette="#2a78d6,#eb6834,#1baf7a">
-      <div class="chart-head">
-        <div class="chart-title">2025 → 2026 매출 성장</div>
-        <div class="chart-headline">6.3×</div>
+    <!-- GROWTH CARD: stats + curve chart -->
+    <div class="viz-root growth-card">
+      <div class="growth-stats">
+        <div class="growth-stat"><span class="growth-stat-num">6.3×</span><span class="growth-stat-lbl">2025→2026 매출 성장</span></div>
+        <div class="growth-stat"><span class="growth-stat-num">3</span><span class="growth-stat-lbl">사업축(패스노트·풀잇·패스서점)</span></div>
+        <div class="growth-stat"><span class="growth-stat-num">1.27억+</span><span class="growth-stat-lbl">2026 외부 계약</span></div>
       </div>
-      <div class="chart-body">
-        <svg class="growth-svg" viewBox="0 0 300 210" role="img" aria-label="2025년 매출 4,255만원에서 2026년 매출 26,427만원으로 성장. 2026년은 패스노트 8,200만원, AI모의고사(예상) 1억 3,000만원, 패스서점 5,227만원으로 구성">
-          <line x1="30" y1="178" x2="270" y2="178" class="chart-baseline" />
-
-          <!-- 2025 bar: 패스노트만 -->
-          <g class="seg" tabindex="0" data-label="2025 · 패스노트" data-value="4,255만원">
-            <rect x="75" y="152" width="22" height="26" rx="3" class="s1" />
-          </g>
-          <text x="86" y="140" class="chart-total">4,255만</text>
-          <text x="86" y="196" class="chart-xlabel">2025</text>
-
-          <!-- 2026 bar: 패스노트 → AI모의고사 → 패스서점 (쌓기, 아래부터, 2px 간격) -->
-          <g class="seg" tabindex="0" data-label="2026 · 패스노트" data-value="8,200만원">
-            <rect x="203" y="130" width="22" height="48" class="s1" />
-          </g>
-          <g class="seg" tabindex="0" data-label="2026 · AI모의고사(예상)" data-value="1억 3,000만원">
-            <rect x="203" y="51" width="22" height="77" class="s2" />
-          </g>
-          <g class="seg" tabindex="0" data-label="2026 · 패스서점" data-value="5,227만원">
-            <rect x="203" y="18" width="22" height="31" rx="3" class="s3" />
-          </g>
-          <text x="214" y="9" class="chart-total">26,427만</text>
-          <text x="214" y="196" class="chart-xlabel">2026 YTD</text>
-        </svg>
-
-        <div class="chart-tooltip" id="growthTooltip" role="status" aria-live="polite"></div>
+      <div class="growth-chart-area">
+        <div id="revenueCurve" role="img" aria-label="2025년 매출 4,255만원에서 2026년 7월 기준 26,427만원으로 성장하는 곡선. Seed 투자 유치, TIPS 선정, 패스서점 오픈, 대성마이맥 계약 등 마일스톤 표시"></div>
       </div>
-
-      <div class="chart-legend">
-        <span><i class="sw s1"></i>패스노트</span>
-        <span><i class="sw s2"></i>AI모의고사(예상)</span>
-        <span><i class="sw s3"></i>패스서점</span>
-      </div>
-
       <details class="chart-table-toggle">
         <summary>표로 보기</summary>
         <table class="chart-table">
-          <thead><tr><th>연도</th><th>패스노트</th><th>AI모의고사</th><th>패스서점</th><th>합계</th></tr></thead>
+          <thead><tr><th>시점</th><th>매출</th><th>비고</th></tr></thead>
           <tbody>
-            <tr><td>2025</td><td>4,255만</td><td>—</td><td>—</td><td>4,255만</td></tr>
-            <tr><td>2026 YTD</td><td>8,200만</td><td>1억 3,000만(예상)</td><td>5,227만</td><td>26,427만</td></tr>
+            <tr><td>2025 (연간)</td><td>4,255만원</td><td>패스노트 단일 제품</td></tr>
+            <tr><td>2026 YTD (7월)</td><td>26,427만원</td><td>패스노트·AI모의고사·패스서점 3개 사업축</td></tr>
           </tbody>
         </table>
       </details>
     </div>
 
   </section>
+
+  <script>
+    // Revenue growth curve — real anchor points(2025 총액 · 2026 YTD 총액)만 라벨 표기,
+    // 중간 마일스톤은 실제 발생 시점의 이벤트 표기이며 임의 매출 수치를 만들지 않음.
+    (function () {
+      var container = document.getElementById('revenueCurve');
+      if (!container) return;
+
+      // x: 0(2025.01 법인설립) ~ 1(2026.07 현재). y: 0~1 정규화(실제 수치 아님, 서사적 형태만 반영)
+      var milestones = [
+        { x: 0.00, y: 0.02, label: '법인설립', date: '2025.01' },
+        { x: 0.30, y: 0.05, label: '패스노트 런칭', date: '2025.07' },
+        { x: 0.42, y: 0.07, label: 'Seed 투자유치', date: '2025.10' },
+        { x: 0.50, y: 0.09, label: 'TIPS 선정', date: '2025.12' },
+        { x: 0.63, y: 0.12, label: '2025년 매출 4,255만원', date: '2025 연간', anchor: true },
+        { x: 0.80, y: 0.42, label: '패스서점 오픈', date: '2026.05' },
+        { x: 1.00, y: 1.00, label: '2026 YTD 매출 26,427만원', date: '2026.07', anchor: true }
+      ];
+
+      function render() {
+        var W = container.offsetWidth;
+        if (!W) return;
+        var P = { top: 30, right: 16, bottom: 28, left: 16 };
+        var cW = W - P.left - P.right, cH = Math.round(cW * 0.42);
+        var H = cH + P.top + P.bottom;
+
+        var xi = function (x) { return P.left + x * cW; };
+        var yi = function (y) { return P.top + cH - y * cH; };
+        var pts = milestones.map(function (m) { return [xi(m.x), yi(m.y)]; });
+
+        var path = 'M ' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+        for (var i = 0; i < pts.length - 1; i++) {
+          var mx = (pts[i][0] + pts[i + 1][0]) / 2;
+          path += ' C ' + mx.toFixed(1) + ' ' + pts[i][1].toFixed(1) + ' ' + mx.toFixed(1) + ' ' + pts[i + 1][1].toFixed(1) + ' ' + pts[i + 1][0].toFixed(1) + ' ' + pts[i + 1][1].toFixed(1);
+        }
+        var axisY = (P.top + cH).toFixed(1);
+        var last = pts[pts.length - 1];
+        var fill = path + ' L ' + last[0].toFixed(1) + ' ' + axisY + ' L ' + pts[0][0].toFixed(1) + ' ' + axisY + ' Z';
+
+        var dots = milestones.map(function (m, i) {
+          var p = pts[i];
+          var r = m.anchor ? 4.5 : 3;
+          var cls = m.anchor ? 'curve-dot curve-dot--anchor' : 'curve-dot';
+          var label = m.label + ' · ' + m.date;
+          return '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="' + r + '" class="' + cls + '"><title>' + label + '</title></circle>';
+        }).join('');
+
+        var lastAnchor = milestones[milestones.length - 1];
+        var firstAnchorIdx = milestones.findIndex(function (m) { return m.anchor; });
+        var firstAnchorPt = pts[firstAnchorIdx];
+
+        container.innerHTML =
+          '<svg xmlns="http://www.w3.org/2000/svg" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" style="display:block">' +
+          '<defs><linearGradient id="rcG" x1="0" y1="0" x2="0" y2="1">' +
+          '<stop offset="0%" stop-color="var(--accent)" stop-opacity="0.22"/>' +
+          '<stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>' +
+          '</linearGradient></defs>' +
+          '<path d="' + fill + '" fill="url(#rcG)"/>' +
+          '<path d="' + path + '" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="curve-line"/>' +
+          dots +
+          '<circle cx="' + last[0].toFixed(1) + '" cy="' + last[1].toFixed(1) + '" r="5" fill="var(--accent)" class="curve-dot-pulse"/>' +
+          '<text x="' + firstAnchorPt[0].toFixed(1) + '" y="' + (firstAnchorPt[1] - 12).toFixed(1) + '" class="curve-label" text-anchor="middle">4,255만</text>' +
+          '<text x="' + last[0].toFixed(1) + '" y="' + (last[1] - 14).toFixed(1) + '" class="curve-label" text-anchor="end">26,427만</text>' +
+          '<text x="' + pts[0][0].toFixed(1) + '" y="' + (parseFloat(axisY) + 18).toFixed(1) + '" class="curve-axis" text-anchor="start">\'25</text>' +
+          '<text x="' + last[0].toFixed(1) + '" y="' + (parseFloat(axisY) + 18).toFixed(1) + '" class="curve-axis" text-anchor="end">\'26 YTD</text>' +
+          '</svg>';
+      }
+
+      var rafId;
+      function schedule() { cancelAnimationFrame(rafId); rafId = requestAnimationFrame(render); }
+      if (window.ResizeObserver) { new ResizeObserver(schedule).observe(container); }
+      else { window.addEventListener('resize', schedule); }
+      schedule();
+    })();
+  </script>
 
   <!-- MARQUEE: 선정·협력 -->
   <div class="marquee" aria-label="선정 및 협력 현황">
@@ -113,28 +153,6 @@
       </div>
     </div>
   </div>
-
-  <script>
-    (function () {
-      var tip = document.getElementById('growthTooltip');
-      if (!tip) return;
-      document.querySelectorAll('.chart-card .seg').forEach(function (seg) {
-        function show(e) {
-          tip.textContent = seg.dataset.label + ' — ' + seg.dataset.value;
-          tip.classList.add('is-visible');
-          seg.classList.add('is-hot');
-        }
-        function hide() {
-          tip.classList.remove('is-visible');
-          seg.classList.remove('is-hot');
-        }
-        seg.addEventListener('pointerenter', show);
-        seg.addEventListener('pointerleave', hide);
-        seg.addEventListener('focus', show);
-        seg.addEventListener('blur', hide);
-      });
-    })();
-  </script>
 
   <!-- ABOUT / PASS AI -->
   <div class="section-bg">
