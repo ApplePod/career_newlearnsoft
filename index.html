@@ -203,10 +203,31 @@
               <circle cx="220" cy="200" r="0.8" class="curve-star" style="animation-duration:4.2s;animation-delay:-2.8s" />
               <circle cx="12" cy="230" r="1" class="curve-star" style="animation-duration:3.6s;animation-delay:-1.4s" />
             </g>
-            <g class="curve-orbit" transform="translate(120,45)">
-              <circle r="16" class="curve-orbit-ring" />
-              <circle r="28" class="curve-orbit-ring" />
-              <circle r="42" class="curve-orbit-ring curve-orbit-ring--faint" />
+            <g class="vision-orbit curve-orbit" transform="translate(120,45)">
+              <circle r="16" class="curve-orbit-ring">
+                <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="18s" repeatCount="indefinite" />
+              </circle>
+              <circle r="28" class="curve-orbit-ring">
+                <animateTransform attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="26s" repeatCount="indefinite" />
+              </circle>
+              <circle r="42" class="curve-orbit-ring curve-orbit-ring--faint">
+                <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="34s" repeatCount="indefinite" />
+              </circle>
+            </g>
+            <g class="vision-ripple-group">
+              <circle cx="120" cy="45" r="6" class="vision-ripple" style="animation-delay:0s" />
+              <circle cx="120" cy="45" r="6" class="vision-ripple" style="animation-delay:-1.3s" />
+              <circle cx="120" cy="45" r="6" class="vision-ripple" style="animation-delay:-2.6s" />
+            </g>
+            <g class="vision-comets">
+              <circle r="1.3" fill="#ffffff" class="curve-travel">
+                <animateMotion dur="7s" begin="-1s" repeatCount="indefinite" path="M-10 24 L250 130" />
+                <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.04;0.12;0.8;0.9;1" dur="7s" begin="-1s" repeatCount="indefinite" />
+              </circle>
+              <circle r="1.1" fill="#ffffff" class="curve-travel">
+                <animateMotion dur="9.5s" begin="-4s" repeatCount="indefinite" path="M250 40 L-10 195" />
+                <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.04;0.12;0.8;0.9;1" dur="9.5s" begin="-4s" repeatCount="indefinite" />
+              </circle>
             </g>
             <line x1="24" y1="280" x2="120" y2="45" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3 5" />
             <line x1="72" y1="280" x2="120" y2="45" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3 5" />
@@ -238,16 +259,26 @@
               <clipPath id="visionAvatar4"><circle cx="216" cy="280" r="17" /></clipPath>
             </defs>
             <g class="vision-team">
-              <image href="assets/team/dochi.png" x="2" y="258" width="44" height="44" clip-path="url(#visionAvatar0)" preserveAspectRatio="xMidYMid slice"><title>도치 · AI 연구원</title></image>
-              <circle cx="24" cy="280" r="17" class="vision-avatar-ring" />
-              <image href="assets/team/malti.png" x="50" y="258" width="44" height="44" clip-path="url(#visionAvatar1)" preserveAspectRatio="xMidYMid slice"><title>말티 · 팀리더</title></image>
-              <circle cx="72" cy="280" r="17" class="vision-avatar-ring" />
-              <image href="assets/team/soho.png" x="98" y="258" width="44" height="44" clip-path="url(#visionAvatar2)" preserveAspectRatio="xMidYMid slice"><title>소호 · PM·PO</title></image>
-              <circle cx="120" cy="280" r="17" class="vision-avatar-ring" />
-              <image href="assets/team/jay.png" x="146" y="258" width="44" height="44" clip-path="url(#visionAvatar3)" preserveAspectRatio="xMidYMid slice"><title>제이 · 개발자</title></image>
-              <circle cx="168" cy="280" r="17" class="vision-avatar-ring" />
-              <image href="assets/team/noah.png" x="194" y="258" width="44" height="44" clip-path="url(#visionAvatar4)" preserveAspectRatio="xMidYMid slice"><title>노아 · 대표</title></image>
-              <circle cx="216" cy="280" r="17" class="vision-avatar-ring" />
+              <g class="vision-avatar" style="animation-delay:0s">
+                <image href="assets/team/dochi.png" x="2" y="258" width="44" height="44" clip-path="url(#visionAvatar0)" preserveAspectRatio="xMidYMid slice"><title>도치 · AI 연구원</title></image>
+                <circle cx="24" cy="280" r="17" class="vision-avatar-ring" style="animation-delay:-0.4s" />
+              </g>
+              <g class="vision-avatar" style="animation-delay:-0.8s">
+                <image href="assets/team/malti.png" x="50" y="258" width="44" height="44" clip-path="url(#visionAvatar1)" preserveAspectRatio="xMidYMid slice"><title>말티 · 팀리더</title></image>
+                <circle cx="72" cy="280" r="17" class="vision-avatar-ring" style="animation-delay:-1.2s" />
+              </g>
+              <g class="vision-avatar" style="animation-delay:-1.6s">
+                <image href="assets/team/soho.png" x="98" y="258" width="44" height="44" clip-path="url(#visionAvatar2)" preserveAspectRatio="xMidYMid slice"><title>소호 · PM·PO</title></image>
+                <circle cx="120" cy="280" r="17" class="vision-avatar-ring" style="animation-delay:-2.0s" />
+              </g>
+              <g class="vision-avatar" style="animation-delay:-2.4s">
+                <image href="assets/team/jay.png" x="146" y="258" width="44" height="44" clip-path="url(#visionAvatar3)" preserveAspectRatio="xMidYMid slice"><title>제이 · 개발자</title></image>
+                <circle cx="168" cy="280" r="17" class="vision-avatar-ring" style="animation-delay:-2.8s" />
+              </g>
+              <g class="vision-avatar" style="animation-delay:-3.2s">
+                <image href="assets/team/noah.png" x="194" y="258" width="44" height="44" clip-path="url(#visionAvatar4)" preserveAspectRatio="xMidYMid slice"><title>노아 · 대표</title></image>
+                <circle cx="216" cy="280" r="17" class="vision-avatar-ring" style="animation-delay:-3.6s" />
+              </g>
             </g>
             <g fill="rgba(255,255,255,0.6)" font-family="var(--font)" font-size="8.5" text-anchor="middle">
               <text x="24" y="309">도치</text>
