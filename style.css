@@ -307,6 +307,16 @@ body { padding-top: 64px; }
 .proof-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 10px; }
 .proof-headline { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
 .proof-body { font-size: 13.5px; color: var(--gray-300); line-height: 1.7; }
+.proof-viz { margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--glass-border); }
+.proof-viz-label { font-family: var(--font-mono); font-size: 9.5px; fill: var(--gray-500); }
+.proof-viz-label--now { fill: var(--white); font-weight: 700; }
+.proof-viz-date { font-family: var(--font-mono); font-size: 9px; fill: var(--gray-500); }
+.proof-viz-metric { font-family: var(--font-mono); font-size: 11px; fill: var(--gray-400); dominant-baseline: middle; }
+.proof-viz-pct { font-family: var(--font-mono); font-size: 11px; font-weight: 700; fill: var(--gray-400); dominant-baseline: middle; }
+.proof-viz-pct--target { fill: var(--white); }
+.proof-viz-arrow { font-size: 11px; fill: var(--gray-600); dominant-baseline: middle; }
+.proof-viz-bar--target { filter: drop-shadow(0 0 4px rgba(255,255,255,0.4)); }
+.proof-viz-foot { font-family: var(--font-mono); font-size: 10px; color: var(--gray-500); margin-top: 6px; text-align: right; }
 
 /* ---------- Positions ---------- */
 .positions-list { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; }
