@@ -430,9 +430,6 @@ body { padding-top: 64px; }
 .vision-avatar-ring { fill: none; stroke: rgba(255, 255, 255, 0.35); stroke-width: 1.5; animation: curveTwinkle 3.2s ease-in-out infinite; }
 .vision-team image { filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.4)); }
 
-@keyframes visionBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-.vision-avatar { animation: visionBob 3.6s ease-in-out infinite; }
-
 @keyframes visionRipple {
   0% { r: 6; opacity: 0.55; stroke-width: 1.4; }
   100% { r: 46; opacity: 0; stroke-width: 0.2; }
@@ -441,7 +438,7 @@ body { padding-top: 64px; }
 
 @media (prefers-reduced-motion: reduce) {
   .vision-travel, .vision-stars .curve-star, .vision-comets, .vision-orbit { display: none; }
-  .vision-avatar, .vision-avatar-ring, .vision-ripple { animation: none; }
+  .vision-avatar-ring, .vision-ripple { animation: none; }
 }
 
 .chart-table-toggle { padding: 0 24px 20px; margin-top: 8px; }
