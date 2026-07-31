@@ -83,12 +83,10 @@
       <div class="apply-modal-title">데이터 가공·정제 지원하기</div>
       <button type="button" class="apply-modal-close" data-close-apply aria-label="닫기">✕</button>
     </div>
-    <form class="apply-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
-      <input type="hidden" name="access_key" value="81136034-a6e2-428c-909f-f3506e711acf" />
-      <input type="hidden" name="subject" value="[지원] 데이터 가공·정제 - 뉴런소프트" />
-      <input type="hidden" name="from_name" value="뉴런소프트 채용 사이트" />
-      <input type="hidden" name="redirect" value="https://career-newlearnsoft.vercel.app/thanks.html" />
-      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+    <form class="apply-form" action="https://formsubmit.co/koreasomoon@naver.com" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_subject" value="[지원] 데이터 가공·정제 - 뉴런소프트" />
+      <input type="hidden" name="_next" value="https://career-newlearnsoft.vercel.app/thanks.html" />
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
       <div class="apply-field">
         <label for="data-name">이름 *</label>
@@ -103,8 +101,8 @@
         <input type="tel" id="data-phone" name="phone" />
       </div>
       <div class="apply-field">
-        <label for="data-message">자기소개 / 지원 동기</label>
-        <textarea id="data-message" name="message" rows="5"></textarea>
+        <label for="data-message">50자 이내 자기소개</label>
+        <textarea id="data-message" name="message" rows="2" maxlength="50"></textarea>
       </div>
       <div class="apply-field">
         <label for="data-resume">이력서 * <span class="apply-hint">(PDF·DOC, 5MB 이하)</span></label>
