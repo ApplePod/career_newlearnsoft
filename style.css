@@ -427,6 +427,9 @@ body { padding-top: 64px; }
 .curve-orbit-ring { fill: none; stroke: rgba(255, 255, 255, 0.1); stroke-width: 1; stroke-dasharray: 2 4; }
 .curve-orbit-ring--faint { stroke: rgba(255, 255, 255, 0.05); }
 .curve-travel { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)); }
+@media (prefers-reduced-motion: reduce) {
+  .vision-travel, .vision-stars .curve-star { display: none; }
+}
 
 .chart-table-toggle { padding: 0 24px 20px; margin-top: 8px; }
 .chart-table-toggle summary { font-size: 11.5px; color: var(--gray-500); cursor: pointer; font-weight: 600; }
