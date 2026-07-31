@@ -70,6 +70,7 @@
   --glass-blur: blur(36px) saturate(180%);
 
   --font: 'Pyeojin Gothic', 'Inter', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
@@ -251,6 +252,54 @@ body { padding-top: 64px; }
 .vision-feature-title { font-size: 15.5px; font-weight: 700; margin-bottom: 8px; line-height: 1.35; }
 .vision-feature-desc { font-size: 13px; color: var(--gray-400); line-height: 1.7; }
 @media (max-width: 720px) { .vision-features { grid-template-columns: 1fr; } }
+
+/* ---------- Pipeline console (기술력 시연) ---------- */
+.pipe-console {
+  max-width: 780px; margin: 44px auto 0;
+  background: var(--gray-800); border: 1px solid var(--glass-border); border-radius: var(--radius-md);
+  overflow: hidden; box-shadow: var(--glass-shadow);
+}
+.pipe-console-head { display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-bottom: 1px solid var(--glass-border); background: rgba(255,255,255,0.02); }
+.pipe-console-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gray-500); animation: curveTwinkle 2s ease-in-out infinite; }
+.pipe-console-title { font-family: var(--font-mono); font-size: 12px; color: var(--gray-400); }
+.pipe-rows { padding: 8px 0; }
+.pipe-row {
+  display: grid; grid-template-columns: 30px 100px 1fr 96px; align-items: center; gap: 14px;
+  padding: 12px 20px; font-family: var(--font-mono); font-size: 12.5px;
+  border-left: 2px solid transparent; transition: background var(--t), border-color var(--t);
+}
+.pipe-row.is-active { background: rgba(255,255,255,0.04); border-left-color: var(--white); }
+.pipe-num { color: var(--gray-500); }
+.pipe-name { font-weight: 700; color: var(--white); letter-spacing: 0.02em; }
+.pipe-desc { color: var(--gray-400); font-family: var(--font); font-size: 12.5px; }
+.pipe-gate { justify-self: end; padding: 3px 9px; border-radius: 4px; font-size: 10.5px; font-weight: 700; white-space: nowrap; }
+.pipe-gate--pass { background: rgba(255,255,255,0.06); color: var(--gray-300); }
+.pipe-gate--hard { background: rgba(255,255,255,0.1); color: var(--white); }
+.pipe-gate--final, .pipe-gate--accept-flash { background: rgba(80, 210, 140, 0.14); color: #6bdb9e; }
+.pipe-gate--reject-flash { background: rgba(230, 90, 80, 0.16); color: #ff8a7a; }
+@media (max-width: 620px) {
+  .pipe-row { grid-template-columns: 24px 1fr; grid-template-areas: "n name" ". desc" ". gate"; row-gap: 4px; }
+  .pipe-num { grid-area: n; } .pipe-name { grid-area: name; } .pipe-desc { grid-area: desc; }
+  .pipe-gate { grid-area: gate; justify-self: start; margin-top: 2px; }
+}
+
+/* ---------- Worked example (실제 문항 비교) ---------- */
+.example-block { max-width: 780px; margin: 32px auto 0; text-align: left; }
+.example-eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 14px; text-align: center; }
+.example-problem { text-align: center; font-size: 15px; color: var(--gray-200); margin-bottom: 24px; }
+.example-problem .example-tag { display: block; font-size: 11.5px; color: var(--gray-500); margin-top: 6px; }
+.example-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.example-col { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: var(--radius-md); padding: 20px; }
+.example-col--highlight { background: rgba(255,255,255,0.05); border-color: var(--glass-border-hover); }
+.example-col-head { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 14px; }
+.example-badge { font-size: 10.5px; font-weight: 700; padding: 3px 8px; border-radius: 4px; }
+.example-badge--no { background: rgba(230, 90, 80, 0.14); color: #ff8a7a; }
+.example-badge--yes { background: rgba(80, 210, 140, 0.14); color: #6bdb9e; }
+.example-code { font-family: var(--font-mono); font-size: 13px; color: var(--gray-100); line-height: 1.8; background: rgba(0,0,0,0.3); border-radius: var(--radius-sm); padding: 14px 16px; white-space: pre-wrap; margin: 0 0 12px; }
+.example-tool { font-size: 12px; color: var(--gray-400); }
+.example-tool-note { display: block; color: var(--gray-500); margin-top: 2px; }
+.example-foot { text-align: center; font-size: 13px; color: var(--gray-500); margin-top: 22px; line-height: 1.7; }
+@media (max-width: 620px) { .example-grid { grid-template-columns: 1fr; } }
 
 /* ---------- Proof grid ---------- */
 .proof-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }

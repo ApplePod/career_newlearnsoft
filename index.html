@@ -219,30 +219,87 @@
         <div class="eyebrow">About Pass AI</div>
         <h2 class="vision-statement">"생성"이 아니라 평가 공정입니다</h2>
         <p class="vision-body">일반 LLM은 정답이 하나로 결정되지 않거나, 교과과정 밖 도구로 풀이하는 문제를 그대로 통과시킵니다. Pass AI는 각 단계가 hard gate를 가진 제약 생성 파이프라인입니다.</p>
+      </div>
 
-        <div class="vision-features">
-          <div class="vision-feature">
-            <div class="vision-feature-icon">G</div>
-            <div class="vision-feature-label">Generate</div>
-            <div class="vision-feature-title">도메인 적응 LLM이 만듭니다</div>
-            <div class="vision-feature-desc">Kanana·Qwen 기반, 단원별 어댑터로 유형·난도가 제약된 지문과 문항을 생성합니다.</div>
+      <!-- LIVE PIPELINE -->
+      <div class="pipe-console">
+        <div class="pipe-console-head">
+          <span class="pipe-console-dot"></span>
+          <span class="pipe-console-title">pass-ai · math-pipeline · run --watch</span>
+        </div>
+        <div class="pipe-rows" id="pipeRows">
+          <div class="pipe-row" data-stage="0">
+            <span class="pipe-num">01</span><span class="pipe-name">INPUT</span>
+            <span class="pipe-desc">유형·난도·정답 슬롯 사전 제약</span>
+            <span class="pipe-gate pipe-gate--pass">PASS</span>
           </div>
-          <div class="vision-feature">
-            <div class="vision-feature-icon">V</div>
-            <div class="vision-feature-label">Verify</div>
-            <div class="vision-feature-title">독립 모델이 다시 풀어봅니다</div>
-            <div class="vision-feature-desc">별도 Solver와 Validator가 정답이 하나로 결정되는지, 교과과정 안의 풀이인지 검증합니다.</div>
+          <div class="pipe-row" data-stage="1">
+            <span class="pipe-num">02</span><span class="pipe-name">GENERATE</span>
+            <span class="pipe-desc">Kanana·Qwen 기반 지문·문항 생성</span>
+            <span class="pipe-gate pipe-gate--pass">PASS</span>
           </div>
-          <div class="vision-feature">
-            <div class="vision-feature-icon">R</div>
-            <div class="vision-feature-label">Review</div>
-            <div class="vision-feature-title">ACCEPT·HOLD·REJECT로 분류합니다</div>
-            <div class="vision-feature-desc">통과 못한 문항은 사유와 함께 그 자리에서 폐기되고, 기록은 전량 추적 가능합니다.</div>
+          <div class="pipe-row" data-stage="2">
+            <span class="pipe-num">03</span><span class="pipe-name">SOLVE</span>
+            <span class="pipe-desc">독립 Solver가 재풀이, 정답 유일성 검산</span>
+            <span class="pipe-gate pipe-gate--hard">HARD GATE</span>
+          </div>
+          <div class="pipe-row" data-stage="3">
+            <span class="pipe-num">04</span><span class="pipe-name">VALIDATE</span>
+            <span class="pipe-desc">교과과정 그래프 매핑, 범위 밖 풀이 차단</span>
+            <span class="pipe-gate pipe-gate--hard">HARD GATE</span>
+          </div>
+          <div class="pipe-row" data-stage="4">
+            <span class="pipe-num">05</span><span class="pipe-name">REVIEW</span>
+            <span class="pipe-desc">ACCEPT / HOLD / REJECT + 사유 기록</span>
+            <span class="pipe-gate pipe-gate--final" id="pipeFinalGate">ACCEPT</span>
           </div>
         </div>
       </div>
+
+      <!-- WORKED EXAMPLE -->
+      <div class="example-block">
+        <div class="example-eyebrow">Same Problem, Different Solve</div>
+        <div class="example-problem">f(x) = x² + 2x + 1, x ∈ ℝ 의 최솟값을 구하시오. <span class="example-tag">고1 수학 · 이차함수 단원 출제</span></div>
+        <div class="example-grid">
+          <div class="example-col">
+            <div class="example-col-head"><span class="example-badge example-badge--no">✕ 교과과정 위반</span>일반 LLM</div>
+            <pre class="example-code">f'(x) = 2x + 2 = 0
+∴ x = -1, 최솟값 f(-1) = 0</pre>
+            <div class="example-tool">사용 도구: 도함수·미적분 <span class="example-tool-note">(고2~3 단원 · 출제범위 밖)</span></div>
+          </div>
+          <div class="example-col example-col--highlight">
+            <div class="example-col-head"><span class="example-badge example-badge--yes">✓ 교과과정 내</span>뉴런소프트 Pass AI</div>
+            <pre class="example-code">f(x) = (x + 1)²
+∴ x = -1일 때 최솟값 0</pre>
+            <div class="example-tool">사용 도구: 완전제곱식·꼭짓점 <span class="example-tool-note">(중3~고1 단원 · 출제범위 안)</span></div>
+          </div>
+        </div>
+        <p class="example-foot">같은 정답이어도 교과과정 밖 도구로 풀면 무효입니다. Solver가 풀이 단계마다 사용된 개념을 교과과정 그래프에 매핑해 자동 검수합니다.</p>
+      </div>
     </div>
   </div>
+
+  <script>
+    // 파이프라인 콘솔 — 순차 하이라이트 + ACCEPT/REJECT 교대 표시(장식, 실제 판정 데이터 아님)
+    (function () {
+      var rows = document.querySelectorAll('#pipeRows .pipe-row');
+      var gate = document.getElementById('pipeFinalGate');
+      if (!rows.length) return;
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) { rows[rows.length - 1].classList.add('is-active'); return; }
+      var i = 0, cycle = 0;
+      setInterval(function () {
+        rows.forEach(function (r) { r.classList.remove('is-active'); });
+        rows[i].classList.add('is-active');
+        if (i === rows.length - 1) {
+          cycle++;
+          gate.textContent = (cycle % 4 === 3) ? 'REJECT' : 'ACCEPT';
+          gate.className = 'pipe-gate pipe-gate--final ' + ((cycle % 4 === 3) ? 'pipe-gate--reject-flash' : 'pipe-gate--accept-flash');
+        }
+        i = (i + 1) % rows.length;
+      }, 650);
+    })();
+  </script>
 
   <!-- PROOF POINTS (Impact) -->
   <div class="section-bg">
