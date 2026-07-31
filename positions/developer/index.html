@@ -137,16 +137,38 @@
   <script>
     (function () {
       var modal = document.getElementById('applyModal');
+      function openModal() {
+        modal.showModal();
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { modal.classList.add('is-open'); });
+        });
+      }
+      function closeModal() {
+        if (!modal.classList.contains('is-open')) return;
+        modal.classList.remove('is-open');
+        var closed = false;
+        function finish() {
+          if (closed) return;
+          closed = true;
+          modal.close();
+        }
+        modal.addEventListener('transitionend', finish, { once: true });
+        setTimeout(finish, 260);
+      }
       document.querySelectorAll('[data-open-apply]').forEach(function (btn) {
-        btn.addEventListener('click', function () { modal.showModal(); });
+        btn.addEventListener('click', openModal);
       });
       document.querySelectorAll('[data-close-apply]').forEach(function (btn) {
-        btn.addEventListener('click', function () { modal.close(); });
+        btn.addEventListener('click', closeModal);
       });
       modal.addEventListener('click', function (e) {
         var r = modal.getBoundingClientRect();
         var inside = r.top <= e.clientY && e.clientY <= r.top + r.height && r.left <= e.clientX && e.clientX <= r.left + r.width;
-        if (!inside) modal.close();
+        if (!inside) closeModal();
+      });
+      modal.addEventListener('cancel', function (e) {
+        e.preventDefault();
+        closeModal();
       });
     })();
   </script>
