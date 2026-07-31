@@ -90,6 +90,7 @@
     <form class="apply-form" action="https://formsubmit.co/koreasomoon@naver.com" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="_subject" value="[지원] PO - 뉴런소프트" />
       <input type="hidden" name="_next" value="https://career-newlearnsoft.vercel.app/thanks.html" />
+      <input type="hidden" name="_captcha" value="false" />
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
       <div class="apply-field">
@@ -115,6 +116,11 @@
       <div class="apply-field">
         <label for="po-portfolio">포트폴리오 <span class="apply-hint">(선택, 5MB 이하)</span></label>
         <input type="file" id="po-portfolio" name="portfolio" accept=".pdf,.doc,.docx,.ppt,.pptx,.zip" />
+      </div>
+      <div class="apply-field">
+        <label for="po-check">사람 확인 * — <span class="apply-check-q" id="po-check-q">3 + 4</span> = ?</label>
+        <input type="text" id="po-check" inputmode="numeric" autocomplete="off" required />
+        <span class="apply-check-error" id="po-check-error"></span>
       </div>
       <label class="apply-consent">
         <input type="checkbox" name="privacy_consent" required />
@@ -169,6 +175,23 @@
       modal.addEventListener('cancel', function (e) {
         e.preventDefault();
         closeModal();
+      });
+
+      var a = 2 + Math.floor(Math.random() * 7);
+      var b = 2 + Math.floor(Math.random() * 7);
+      var checkQ = document.getElementById('po-check-q');
+      var checkInput = document.getElementById('po-check');
+      var checkError = document.getElementById('po-check-error');
+      checkQ.textContent = a + ' + ' + b;
+      var form = modal.querySelector('.apply-form');
+      form.addEventListener('submit', function (e) {
+        if (parseInt(checkInput.value, 10) !== a + b) {
+          e.preventDefault();
+          checkError.textContent = '계산이 맞지 않아요. 다시 확인해주세요.';
+          checkInput.focus();
+        } else {
+          checkError.textContent = '';
+        }
       });
     })();
   </script>
