@@ -370,10 +370,6 @@ body { padding-top: 64px; }
 .proof-viz-bar--target { filter: drop-shadow(0 0 4px rgba(255,255,255,0.4)); width: var(--w); animation: proofBarFill 1.2s ease-out backwards; }
 @keyframes proofBarFill { 0% { width: 0; } 100% { width: var(--w); } }
 .proof-viz-foot { font-family: var(--font-mono); font-size: 10px; color: var(--gray-500); margin-top: 6px; text-align: right; }
-.proof-viz--stats { display: flex; gap: 28px; }
-.proof-stat { display: flex; flex-direction: column; gap: 4px; }
-.proof-stat-num { font-family: var(--font-mono); font-size: 22px; font-weight: 800; color: var(--white); }
-.proof-stat-lbl { font-size: 11px; color: var(--gray-500); }
 
 /* ---------- Positions ---------- */
 .positions-list { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; }
