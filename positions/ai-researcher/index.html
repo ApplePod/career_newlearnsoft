@@ -14,7 +14,7 @@
     <div class="nav-links">
       <a href="../../index.html" class="nav-link">홈</a>
       <a href="../index.html" class="nav-link active">채용 포지션</a>
-      <a href="#apply" class="btn-apply">지원하기</a>
+      <button type="button" class="btn-apply" data-open-apply>지원하기</button>
     </div>
   </nav>
 
@@ -84,48 +84,55 @@
       <p>Python · SQL · Pandas · scikit-learn · LLM · 지식그래프 · A/B 테스트</p>
     </div>
 
-    <div class="detail-block" id="apply">
-      <div class="detail-block-title">이 포지션에 지원하기</div>
-      <form class="apply-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="access_key" value="81136034-a6e2-428c-909f-f3506e711acf" />
-        <input type="hidden" name="subject" value="[지원] AI 연구원 - 뉴런소프트" />
-        <input type="hidden" name="from_name" value="뉴런소프트 채용 사이트" />
-        <input type="hidden" name="redirect" value="https://career-newlearnsoft.vercel.app/thanks.html" />
-        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
-
-        <div class="apply-field">
-          <label for="ai-name">이름 *</label>
-          <input type="text" id="ai-name" name="name" required />
-        </div>
-        <div class="apply-field">
-          <label for="ai-email">이메일 *</label>
-          <input type="email" id="ai-email" name="email" required />
-        </div>
-        <div class="apply-field">
-          <label for="ai-phone">연락처</label>
-          <input type="tel" id="ai-phone" name="phone" />
-        </div>
-        <div class="apply-field">
-          <label for="ai-message">자기소개 / 지원 동기</label>
-          <textarea id="ai-message" name="message" rows="5"></textarea>
-        </div>
-        <div class="apply-field">
-          <label for="ai-resume">이력서 * <span class="apply-hint">(PDF·DOC, 5MB 이하)</span></label>
-          <input type="file" id="ai-resume" name="resume" accept=".pdf,.doc,.docx" required />
-        </div>
-        <div class="apply-field">
-          <label for="ai-portfolio">포트폴리오 <span class="apply-hint">(선택, 5MB 이하)</span></label>
-          <input type="file" id="ai-portfolio" name="portfolio" accept=".pdf,.doc,.docx,.ppt,.pptx,.zip" />
-        </div>
-        <label class="apply-consent">
-          <input type="checkbox" name="privacy_consent" required />
-          제출한 이력서·포트폴리오는 채용 목적으로만 사용되며, 전형 종료 후 파기됩니다. 개인정보 수집·이용에 동의합니다. *
-        </label>
-        <button type="submit" class="btn-primary apply-submit">지원서 제출하기</button>
-        <p class="apply-note">파일 첨부가 어려우시면 <a href="mailto:koreasomoon@naver.com?subject=[지원] AI 연구원 - 뉴런소프트" style="color:var(--gray-300);text-decoration:underline;">이메일로 직접 지원</a>도 가능합니다.</p>
-      </form>
+    <div class="detail-cta">
+      <button type="button" class="btn-primary" data-open-apply>이 포지션에 지원하기</button>
     </div>
   </div>
+
+  <dialog class="apply-modal" id="applyModal">
+    <div class="apply-modal-head">
+      <div class="apply-modal-title">AI 연구원 지원하기</div>
+      <button type="button" class="apply-modal-close" data-close-apply aria-label="닫기">✕</button>
+    </div>
+    <form class="apply-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="access_key" value="81136034-a6e2-428c-909f-f3506e711acf" />
+      <input type="hidden" name="subject" value="[지원] AI 연구원 - 뉴런소프트" />
+      <input type="hidden" name="from_name" value="뉴런소프트 채용 사이트" />
+      <input type="hidden" name="redirect" value="https://career-newlearnsoft.vercel.app/thanks.html" />
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+
+      <div class="apply-field">
+        <label for="ai-name">이름 *</label>
+        <input type="text" id="ai-name" name="name" required />
+      </div>
+      <div class="apply-field">
+        <label for="ai-email">이메일 *</label>
+        <input type="email" id="ai-email" name="email" required />
+      </div>
+      <div class="apply-field">
+        <label for="ai-phone">연락처</label>
+        <input type="tel" id="ai-phone" name="phone" />
+      </div>
+      <div class="apply-field">
+        <label for="ai-message">자기소개 / 지원 동기</label>
+        <textarea id="ai-message" name="message" rows="5"></textarea>
+      </div>
+      <div class="apply-field">
+        <label for="ai-resume">이력서 * <span class="apply-hint">(PDF·DOC, 5MB 이하)</span></label>
+        <input type="file" id="ai-resume" name="resume" accept=".pdf,.doc,.docx" required />
+      </div>
+      <div class="apply-field">
+        <label for="ai-portfolio">포트폴리오 <span class="apply-hint">(선택, 5MB 이하)</span></label>
+        <input type="file" id="ai-portfolio" name="portfolio" accept=".pdf,.doc,.docx,.ppt,.pptx,.zip" />
+      </div>
+      <label class="apply-consent">
+        <input type="checkbox" name="privacy_consent" required />
+        제출한 이력서·포트폴리오는 채용 목적으로만 사용되며, 전형 종료 후 파기됩니다. 개인정보 수집·이용에 동의합니다. *
+      </label>
+      <button type="submit" class="btn-primary apply-submit">지원서 제출하기</button>
+      <p class="apply-note">파일 첨부가 어려우시면 <a href="mailto:koreasomoon@naver.com?subject=[지원] AI 연구원 - 뉴런소프트" style="color:var(--gray-300);text-decoration:underline;">이메일로 직접 지원</a>도 가능합니다.</p>
+    </form>
+  </dialog>
 
   <footer class="footer">
     <div class="footer-logo">뉴런소프트</div>
@@ -135,6 +142,23 @@
       <a href="../index.html">채용 포지션</a>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var modal = document.getElementById('applyModal');
+      document.querySelectorAll('[data-open-apply]').forEach(function (btn) {
+        btn.addEventListener('click', function () { modal.showModal(); });
+      });
+      document.querySelectorAll('[data-close-apply]').forEach(function (btn) {
+        btn.addEventListener('click', function () { modal.close(); });
+      });
+      modal.addEventListener('click', function (e) {
+        var r = modal.getBoundingClientRect();
+        var inside = r.top <= e.clientY && e.clientY <= r.top + r.height && r.left <= e.clientX && e.clientX <= r.left + r.width;
+        if (!inside) modal.close();
+      });
+    })();
+  </script>
 
 </body>
 </html>

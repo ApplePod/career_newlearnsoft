@@ -147,6 +147,35 @@ body { padding-top: 64px; }
   transition: opacity var(--t), box-shadow var(--t);
 }
 .btn-apply:hover { opacity: 0.88; box-shadow: 0 4px 20px rgba(255, 255, 255, 0.28); }
+button.btn-apply, button.btn-primary { border: none; cursor: pointer; font-family: var(--font); }
+
+/* ---------- Apply modal ---------- */
+.apply-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  background: var(--gray-900);
+  color: var(--white);
+  padding: 32px;
+  max-width: 560px;
+  width: calc(100% - 48px);
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: var(--glass-shadow-hover);
+}
+.apply-modal::backdrop { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.apply-modal-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; }
+.apply-modal-title { font-size: 17px; font-weight: 800; }
+.apply-modal-close {
+  background: none; border: none; color: var(--gray-400); font-size: 16px;
+  width: 30px; height: 30px; border-radius: var(--radius-sm); cursor: pointer;
+  transition: background var(--t), color var(--t);
+}
+.apply-modal-close:hover { background: var(--glass-bg-hover); color: var(--white); }
 
 /* ---------- Section shell ---------- */
 .section { max-width: var(--max); margin: 0 auto; padding: 96px 24px; }
