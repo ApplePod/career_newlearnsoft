@@ -569,46 +569,96 @@ button.btn-apply, button.btn-primary { border: none; cursor: pointer; font-famil
 }
 
 /* ---------- Thanks page ---------- */
-.confetti-field { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
-.confetti-star {
-  position: absolute;
-  top: -5%;
-  background: #ffffff;
-  border-radius: 50%;
-  animation: confettiFall linear infinite;
-  will-change: transform, opacity;
-}
-@keyframes confettiFall {
-  0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
-  8% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(115vh) translateX(var(--drift, 0px)) rotate(360deg); opacity: 0; }
-}
 .thanks-hero { position: relative; z-index: 2; }
 .thanks-footer { position: relative; z-index: 2; }
-.thanks-icon {
-  width: 72px;
-  height: 72px;
-  margin: 0 auto 28px;
-  border-radius: 50%;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: thanksPulse 2.4s ease-in-out infinite;
-}
-.thanks-icon svg { width: 32px; height: 32px; }
-@keyframes thanksPulse {
-  0%, 100% { box-shadow: 0 0 0 1px var(--glass-border), 0 0 36px rgba(255, 255, 255, 0.32), 0 0 72px rgba(255, 255, 255, 0.12); }
-  50% { box-shadow: 0 0 0 1px var(--glass-border), 0 0 56px rgba(255, 255, 255, 0.5), 0 0 110px rgba(255, 255, 255, 0.22); }
-}
 .thanks-title {
-  font-size: clamp(38px, 6.4vw, 78px);
+  font-size: clamp(34px, 5.6vw, 64px);
   letter-spacing: -0.025em;
+  margin-top: 8px;
 }
 .thanks-desc-break { display: none; }
 @media (min-width: 640px) { .thanks-desc-break { display: inline; } }
+
+.firework-field { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+.firework-spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  margin: -2px 0 0 -2px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.95), 0 0 16px rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  animation: sparkBurst 1.15s cubic-bezier(.15, .7, .3, 1) forwards;
+}
+@keyframes sparkBurst {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(0.25); opacity: 0; }
+}
+
+.welcome-team {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 14px;
+  perspective: 900px;
+  max-width: 440px;
+  margin: 36px auto 0;
+}
+.welcome-team-link { position: absolute; top: 6px; left: 0; width: 100%; height: 50px; z-index: 0; pointer-events: none; }
+.welcome-avatar {
+  position: relative;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+  opacity: 0;
+  transform: rotateY(100deg) translateY(18px) scale(0.4);
+  animation:
+    avatarComeAlive 0.7s cubic-bezier(.34, 1.56, .64, 1) forwards,
+    avatarBob 3.2s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.16s), calc(1s + var(--i) * 0.22s);
+}
+.welcome-avatar--center { width: 68px; height: 68px; }
+.welcome-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #111318;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.22), 0 10px 22px rgba(0, 0, 0, 0.55);
+}
+.welcome-avatar-shadow {
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  width: 70%;
+  height: 9px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.6), transparent 72%);
+  transform: translateX(-50%);
+}
+.welcome-avatar-name {
+  position: absolute;
+  bottom: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10.5px;
+  color: var(--gray-500);
+  white-space: nowrap;
+}
+@keyframes avatarComeAlive {
+  0% { opacity: 0; transform: rotateY(100deg) translateY(18px) scale(0.4); }
+  55% { opacity: 1; transform: rotateY(-14deg) translateY(-6px) scale(1.08); }
+  100% { opacity: 1; transform: rotateY(0deg) translateY(0) scale(1); }
+}
+@keyframes avatarBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+.welcome-caption { text-align: center; font-size: 12px; color: var(--gray-500); margin-top: 30px; letter-spacing: 0.02em; position: relative; z-index: 2; }
+
 @media (prefers-reduced-motion: reduce) {
-  .confetti-field { display: none; }
-  .thanks-icon { animation: none; }
+  .firework-field { display: none; }
+  .welcome-avatar { animation: none; opacity: 1; transform: none; }
 }
