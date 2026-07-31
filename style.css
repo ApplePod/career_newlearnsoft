@@ -582,55 +582,84 @@ button.btn-apply, button.btn-primary { border: none; cursor: pointer; font-famil
 .firework-field { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
 .firework-spark {
   position: absolute;
-  width: 4px;
-  height: 4px;
-  margin: -2px 0 0 -2px;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
   border-radius: 50%;
   background: #ffffff;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.95), 0 0 16px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.65);
   opacity: 0;
-  animation: sparkBurst 1.15s cubic-bezier(.15, .7, .3, 1) forwards;
+  animation: sparkBurst 1.4s cubic-bezier(.1, .6, .3, 1) forwards;
 }
 @keyframes sparkBurst {
-  0% { transform: translate(0, 0) scale(1); opacity: 1; }
-  100% { transform: translate(var(--dx), var(--dy)) scale(0.25); opacity: 0; }
+  0% { transform: translate(0, 0) scale(1.3); opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(0.2); opacity: 0; }
 }
 
-.welcome-dance-wrap {
+.welcome-team {
   position: relative;
   z-index: 2;
-  max-width: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 14px;
+  perspective: 900px;
+  max-width: 440px;
   margin: 36px auto 0;
 }
-.welcome-dance { display: block; width: 100%; height: auto; overflow: visible; }
-.dance-name { font-family: var(--font); font-size: 11px; fill: var(--gray-500); }
-.dance-figure {
-  transform-box: fill-box;
-  transform-origin: 50% 100%;
+.welcome-team-link { position: absolute; top: 6px; left: 0; width: 100%; height: 50px; z-index: 0; pointer-events: none; }
+.welcome-avatar {
+  position: relative;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
   opacity: 0;
-  transform: translateY(36px) scale(0.4);
-  animation: figurePop 0.6s cubic-bezier(.34, 1.56, .64, 1) forwards;
-  animation-delay: calc(var(--i) * 0.15s);
+  transform: rotateY(100deg) translateY(18px) scale(0.4);
+  animation:
+    avatarComeAlive 0.7s cubic-bezier(.34, 1.56, .64, 1) forwards,
+    avatarBob 3.2s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.16s), calc(1s + var(--i) * 0.22s);
 }
-@keyframes figurePop {
-  0% { opacity: 0; transform: translateY(36px) scale(0.4); }
-  60% { opacity: 1; transform: translateY(-6px) scale(1.08); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
+.welcome-avatar--center { width: 68px; height: 68px; }
+.welcome-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #111318;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.22), 0 10px 22px rgba(0, 0, 0, 0.55);
 }
-.dance-wave {
-  transform-box: view-box;
-  animation: danceWave 0.55s ease-in-out infinite;
+.welcome-avatar-shadow {
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  width: 70%;
+  height: 9px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.6), transparent 72%);
+  transform: translateX(-50%);
 }
-.dance-wave--left { animation-delay: 1.1s; }
-.dance-wave--right { animation-delay: 1.25s; }
-@keyframes danceWave {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(-16deg); }
+.welcome-avatar-name {
+  position: absolute;
+  bottom: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10.5px;
+  color: var(--gray-500);
+  white-space: nowrap;
 }
-.welcome-caption { text-align: center; font-size: 12px; color: var(--gray-500); margin-top: 14px; letter-spacing: 0.02em; position: relative; z-index: 2; }
+@keyframes avatarComeAlive {
+  0% { opacity: 0; transform: rotateY(100deg) translateY(18px) scale(0.4); }
+  55% { opacity: 1; transform: rotateY(-14deg) translateY(-6px) scale(1.08); }
+  100% { opacity: 1; transform: rotateY(0deg) translateY(0) scale(1); }
+}
+@keyframes avatarBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+.welcome-caption { text-align: center; font-size: 12px; color: var(--gray-500); margin-top: 30px; letter-spacing: 0.02em; position: relative; z-index: 2; }
 
 @media (prefers-reduced-motion: reduce) {
   .firework-field { display: none; }
-  .dance-figure { animation: none; opacity: 1; transform: none; }
-  .dance-wave { animation: none; }
+  .welcome-avatar { animation: none; opacity: 1; transform: none; }
 }
