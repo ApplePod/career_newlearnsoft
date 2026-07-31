@@ -471,8 +471,41 @@ button.btn-apply, button.btn-primary { border: none; cursor: pointer; font-famil
   transition: background var(--t), border-color var(--t);
 }
 .apply-field input[type="file"]::file-selector-button:hover { background: var(--glass-bg-hover); border-color: var(--glass-border-hover); }
-.apply-check-q { font-family: var(--font-mono); font-weight: 700; color: var(--white); }
-.apply-check-error { display: block; font-size: 12px; color: #ff6b6b; min-height: 16px; }
+.puzzle-track {
+  position: relative;
+  height: 40px;
+  margin-top: 6px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  touch-action: none;
+}
+.puzzle-fill {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 0;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  pointer-events: none;
+}
+.puzzle-target { position: absolute; top: 3px; left: 0; pointer-events: none; }
+.puzzle-piece {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  cursor: grab;
+  touch-action: none;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+  transition: left 0.25s ease;
+}
+.puzzle-piece:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.6); outline-offset: 2px; border-radius: 8px; }
+.puzzle-piece.is-dragging { transition: none; cursor: grabbing; }
+.puzzle-piece.is-success { cursor: default; }
+.puzzle-piece.is-success svg g { fill: #57d18d; }
+.puzzle-status { font-size: 12px; color: var(--gray-500); margin-top: 8px; }
+.puzzle-status.is-success { color: #57d18d; }
 .apply-consent { display: flex; align-items: flex-start; gap: 10px; font-size: 12.5px; color: var(--gray-400); line-height: 1.6; text-align: left; cursor: pointer; }
 .apply-consent input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--white); }
 .apply-submit { border: none; cursor: pointer; font-family: var(--font); width: 100%; }
@@ -545,13 +578,6 @@ button.btn-apply, button.btn-primary { border: none; cursor: pointer; font-famil
   .proof-viz-bar--target { animation: none; }
 }
 
-.chart-table-toggle { padding: 0 24px 20px; margin-top: 8px; }
-.chart-table-toggle summary { font-size: 11.5px; color: var(--gray-500); cursor: pointer; font-weight: 600; }
-.chart-table-toggle summary:hover { color: var(--gray-300); }
-.chart-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 12px; }
-.chart-table th, .chart-table td { text-align: right; padding: 7px 8px; border-bottom: 1px solid var(--glass-border); font-variant-numeric: tabular-nums; color: var(--gray-300); }
-.chart-table th:first-child, .chart-table td:first-child { text-align: left; color: var(--white); }
-.chart-table thead th { color: var(--gray-500); font-weight: 600; font-size: 11px; }
 @media (max-width: 600px) { .growth-stats { padding: 20px 16px; } .growth-stat-num { font-size: 22px; } .growth-stat-lbl { font-size: 10.5px; } }
 
 /* ---------- Responsive ---------- */

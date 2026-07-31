@@ -118,9 +118,27 @@
         <input type="file" id="po-portfolio" name="portfolio" accept=".pdf,.doc,.docx,.ppt,.pptx,.zip" />
       </div>
       <div class="apply-field">
-        <label for="po-check">사람 확인 * — <span class="apply-check-q" id="po-check-q">3 + 4</span> = ?</label>
-        <input type="text" id="po-check" inputmode="numeric" autocomplete="off" required />
-        <span class="apply-check-error" id="po-check-error"></span>
+        <label>사람 확인 * — 조각을 옮겨 빈 자리에 맞춰주세요</label>
+        <div class="puzzle" id="po-puzzle">
+          <div class="puzzle-track" id="po-puzzle-track">
+            <div class="puzzle-fill" id="po-puzzle-fill"></div>
+            <svg class="puzzle-target" id="po-puzzle-target" width="34" height="34" viewBox="0 0 34 34">
+              <g fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-dasharray="3 3">
+                <rect x="4" y="4" width="22" height="22" rx="4" />
+                <circle cx="26" cy="15" r="6" />
+              </g>
+            </svg>
+            <div class="puzzle-piece" id="po-puzzle-piece" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="퍼즐 조각, 화살표 키 또는 드래그로 이동">
+              <svg width="34" height="34" viewBox="0 0 34 34">
+                <g fill="#ffffff">
+                  <rect x="4" y="4" width="22" height="22" rx="4" />
+                  <circle cx="26" cy="15" r="6" />
+                </g>
+              </svg>
+            </div>
+          </div>
+          <p class="puzzle-status" id="po-puzzle-status">조각을 드래그해서 빈 칸에 맞춰보세요</p>
+        </div>
       </div>
       <label class="apply-consent">
         <input type="checkbox" name="privacy_consent" required />
@@ -143,8 +161,10 @@
   <script>
     (function () {
       var modal = document.getElementById('applyModal');
+      var puzzle;
       function openModal() {
         modal.showModal();
+        if (puzzle) puzzle.layout();
         requestAnimationFrame(function () {
           requestAnimationFrame(function () { modal.classList.add('is-open'); });
         });
@@ -177,20 +197,103 @@
         closeModal();
       });
 
-      var a = 2 + Math.floor(Math.random() * 7);
-      var b = 2 + Math.floor(Math.random() * 7);
-      var checkQ = document.getElementById('po-check-q');
-      var checkInput = document.getElementById('po-check');
-      var checkError = document.getElementById('po-check-error');
-      checkQ.textContent = a + ' + ' + b;
+      function setupPuzzle(prefix) {
+        var track = document.getElementById(prefix + '-puzzle-track');
+        var piece = document.getElementById(prefix + '-puzzle-piece');
+        var target = document.getElementById(prefix + '-puzzle-target');
+        var status = document.getElementById(prefix + '-puzzle-status');
+        var fill = document.getElementById(prefix + '-puzzle-fill');
+        var pieceW = 34;
+        var verified = false;
+        var dragging = false;
+        var startClientX = 0;
+        var startLeft = 0;
+        var maxX = 1;
+        var targetX = 0;
+
+        function layout() {
+          var trackW = track.clientWidth;
+          maxX = Math.max(1, trackW - pieceW);
+          targetX = Math.round(maxX * (0.45 + Math.random() * 0.4));
+          target.style.left = targetX + 'px';
+          verified = false;
+          piece.classList.remove('is-success');
+          status.textContent = '조각을 드래그해서 빈 칸에 맞춰보세요';
+          status.classList.remove('is-success');
+          piece.setAttribute('aria-label', '퍼즐 조각, 화살표 키 또는 드래그로 이동');
+          setPos(0);
+        }
+        layout();
+
+        function setPos(x) {
+          x = Math.max(0, Math.min(maxX, x));
+          piece.style.left = x + 'px';
+          if (fill) fill.style.width = (x + pieceW / 2) + 'px';
+          piece.setAttribute('aria-valuenow', String(Math.round((x / maxX) * 100)));
+          return x;
+        }
+
+        function checkSuccess(x) {
+          if (Math.abs(x - targetX) <= 8) {
+            verified = true;
+            setPos(targetX);
+            piece.classList.add('is-success');
+            status.textContent = '확인되었습니다';
+            status.classList.add('is-success');
+            piece.setAttribute('aria-label', '사람 확인 완료');
+          } else {
+            verified = false;
+            setPos(0);
+            status.textContent = '아쉬워요, 다시 옮겨보세요';
+            status.classList.remove('is-success');
+          }
+        }
+
+        function pointerDown(e) {
+          if (verified) return;
+          dragging = true;
+          piece.classList.add('is-dragging');
+          startClientX = e.touches ? e.touches[0].clientX : e.clientX;
+          startLeft = parseFloat(piece.style.left || '0');
+          e.preventDefault();
+        }
+        function pointerMove(e) {
+          if (!dragging) return;
+          var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          setPos(startLeft + (clientX - startClientX));
+        }
+        function pointerUp() {
+          if (!dragging) return;
+          dragging = false;
+          piece.classList.remove('is-dragging');
+          checkSuccess(parseFloat(piece.style.left || '0'));
+        }
+
+        piece.addEventListener('mousedown', pointerDown);
+        window.addEventListener('mousemove', pointerMove);
+        window.addEventListener('mouseup', pointerUp);
+        piece.addEventListener('touchstart', pointerDown, { passive: false });
+        window.addEventListener('touchmove', pointerMove, { passive: false });
+        window.addEventListener('touchend', pointerUp);
+        piece.addEventListener('keydown', function (e) {
+          if (verified) return;
+          var cur = parseFloat(piece.style.left || '0');
+          if (e.key === 'ArrowRight') { setPos(cur + 8); e.preventDefault(); }
+          else if (e.key === 'ArrowLeft') { setPos(cur - 8); e.preventDefault(); }
+          else if (e.key === 'Enter' || e.key === ' ') { checkSuccess(parseFloat(piece.style.left || '0')); e.preventDefault(); }
+        });
+
+        return { isVerified: function () { return verified; }, layout: layout };
+      }
+
+      puzzle = setupPuzzle('po');
       var form = modal.querySelector('.apply-form');
       form.addEventListener('submit', function (e) {
-        if (parseInt(checkInput.value, 10) !== a + b) {
+        if (!puzzle.isVerified()) {
           e.preventDefault();
-          checkError.textContent = '계산이 맞지 않아요. 다시 확인해주세요.';
-          checkInput.focus();
-        } else {
-          checkError.textContent = '';
+          var status = document.getElementById('po-puzzle-status');
+          status.textContent = '퍼즐을 먼저 맞춰주세요.';
+          status.classList.remove('is-success');
         }
       });
     })();
