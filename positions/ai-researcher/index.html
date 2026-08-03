@@ -296,6 +296,7 @@
 
       puzzle = setupPuzzle('ai');
       var form = modal.querySelector('.apply-form');
+      var submitBtn = form.querySelector('.apply-submit');
       var MAX_FILE_SIZE = 5 * 1024 * 1024;
       var MAX_TOTAL_SIZE = 10 * 1024 * 1024;
       var resumeInput = document.getElementById('ai-resume');
@@ -305,23 +306,20 @@
         var resumeFile = resumeInput.files[0];
         var portfolioFile = portfolioInput.files[0];
         var total = (resumeFile ? resumeFile.size : 0) + (portfolioFile ? portfolioFile.size : 0);
+        var valid = true;
         if (resumeFile && resumeFile.size > MAX_FILE_SIZE) {
           fileError.textContent = '이력서 파일이 5MB를 초과했습니다.';
-          fileError.classList.add('is-visible');
-          return false;
-        }
-        if (portfolioFile && portfolioFile.size > MAX_FILE_SIZE) {
+          valid = false;
+        } else if (portfolioFile && portfolioFile.size > MAX_FILE_SIZE) {
           fileError.textContent = '포트폴리오 파일이 5MB를 초과했습니다.';
-          fileError.classList.add('is-visible');
-          return false;
-        }
-        if (total > MAX_TOTAL_SIZE) {
+          valid = false;
+        } else if (total > MAX_TOTAL_SIZE) {
           fileError.textContent = '첨부파일 전체 용량이 10MB를 초과했습니다. 파일을 줄여주세요.';
-          fileError.classList.add('is-visible');
-          return false;
+          valid = false;
         }
-        fileError.classList.remove('is-visible');
-        return true;
+        fileError.classList.toggle('is-visible', !valid);
+        submitBtn.disabled = !valid;
+        return valid;
       }
       resumeInput.addEventListener('change', checkFileSizes);
       portfolioInput.addEventListener('change', checkFileSizes);
