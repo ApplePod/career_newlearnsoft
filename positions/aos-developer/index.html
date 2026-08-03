@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AOS 개발자 (패스노트) | 뉴런소프트 채용</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo"><span class="nav-logo-mark">N</span>뉴런소프트</a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">홈</a>
+      <a href="/positions" class="nav-link active">채용 포지션</a>
+      <button type="button" class="btn-apply" data-open-apply>지원하기</button>
+    </div>
+  </nav>
+
+  <div class="detail-header">
+    <a href="/positions" class="detail-back">← 채용 포지션</a>
+    <div class="detail-team">Passnote Android</div>
+    <h1 class="detail-title">AOS 개발자 (패스노트)</h1>
+    <p class="detail-tagline">iOS와 동일한 경험을 Android에서도 만들, 패스노트 Android 앱을 처음부터 함께 만들어갈 개발자를 찾습니다.</p>
+    <div class="detail-meta">
+      <span class="badge">정규직</span>
+      <span class="badge">신입 가능</span>
+      <span class="badge">서울 관악구</span>
+      <span class="badge">채용 인원 1명</span>
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <div class="detail-block">
+      <div class="detail-block-title">회사/팀 소개</div>
+      <p>패스노트는 책·기출문제·노트·템플릿 등 학습 콘텐츠를 사고파는 필기 학습 앱입니다. 현재 iOS 앱이 정식 운영 중이며, 동일한 UI/UX와 백엔드 API를 공유하는 Android 앱을 새로 만들고 있습니다. Google 로그인과 Google Play Billing 등 핵심 연동은 백엔드 쪽에서 이미 준비되어 있어, 이를 기반으로 Android 앱을 처음부터 함께 만들어갈 개발자를 찾습니다.</p>
+    </div>
+
+    <div class="detail-block">
+      <div class="detail-block-title">주요 업무</div>
+      <ul>
+        <li>패스노트 Android 앱 신규 개발 (iOS와 동일한 UI/UX 구현)</li>
+        <li>Google 로그인, Google Play Billing 연동</li>
+        <li>스마트스토어 리딤코드, 콘텐츠 다운로드 등 핵심 플로우 구현</li>
+        <li>플레이스토어 배포 프로세스 셋업 및 운영</li>
+        <li>iOS 팀과 API 스펙·디자인 일관성 협업</li>
+      </ul>
+    </div>
+
+    <div class="detail-block">
+      <div class="detail-block-title">자격 요건</div>
+      <ul>
+        <li>Android 앱 개발 역량 — Kotlin (신입 가능, 경력 2년 이상 우대)</li>
+        <li>REST API 연동 및 비동기 처리 경험</li>
+        <li>Jetpack Compose 또는 기존 View 시스템 기반 UI 개발 경험</li>
+        <li>Git 기반 협업 경험</li>
+      </ul>
+    </div>
+
+    <div class="detail-block">
+      <div class="detail-block-title">우대 사항</div>
+      <ul>
+        <li>Google Play Billing, Google 로그인 등 연동 경험</li>
+        <li>신규 앱을 처음부터 만들어 배포까지 진행해본 경험</li>
+        <li>iOS 앱과 크로스플랫폼으로 함께 개발해본 경험</li>
+      </ul>
+    </div>
+
+    <div class="detail-block">
+      <div class="detail-block-title">이런 분이면 잘 맞아요</div>
+      <ul>
+        <li>신규 앱을 처음부터 설계하고 만드는 과정을 즐기는 분</li>
+        <li>기존 iOS 서비스 사양을 참고하며 꼼꼼하게 동등한 경험을 구현할 수 있는 분</li>
+      </ul>
+    </div>
+
+    <div class="detail-cta">
+      <button type="button" class="btn-primary" data-open-apply>이 포지션에 지원하기</button>
+    </div>
+  </div>
+
+  <dialog class="apply-modal" id="applyModal">
+    <div class="apply-modal-head">
+      <div class="apply-modal-title">AOS 개발자 지원하기</div>
+      <button type="button" class="apply-modal-close" data-close-apply aria-label="닫기">✕</button>
+    </div>
+    <form class="apply-form" action="https://formsubmit.co/koreasomoon@naver.com" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_subject" value="[지원] AOS 개발자 - 뉴런소프트" />
+      <input type="hidden" name="_next" value="https://career-newlearnsoft.vercel.app/thanks" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+      <div class="apply-field">
+        <label for="aos-name">이름 *</label>
+        <input type="text" id="aos-name" name="name" required />
+      </div>
+      <div class="apply-field">
+        <label for="aos-email">이메일 *</label>
+        <input type="email" id="aos-email" name="email" required />
+      </div>
+      <div class="apply-field">
+        <label for="aos-phone">연락처</label>
+        <input type="tel" id="aos-phone" name="phone" />
+      </div>
+      <div class="apply-field">
+        <label for="aos-message">50자 이내 자기소개</label>
+        <textarea id="aos-message" name="message" rows="2" maxlength="50"></textarea>
+      </div>
+      <div class="apply-field">
+        <label for="aos-resume">이력서 * <span class="apply-hint">(PDF·DOC, 5MB 이하)</span></label>
+        <input type="file" id="aos-resume" name="resume" accept=".pdf,.doc,.docx" required />
+      </div>
+      <div class="apply-field">
+        <label for="aos-portfolio">포트폴리오 <span class="apply-hint">(선택, 5MB 이하)</span></label>
+        <input type="file" id="aos-portfolio" name="portfolio" accept=".pdf,.doc,.docx,.ppt,.pptx,.zip" />
+      </div>
+      <div class="apply-field">
+        <label>사람 확인 * — 조각을 옮겨 빈 자리에 맞춰주세요</label>
+        <div class="puzzle" id="aos-puzzle">
+          <div class="puzzle-track" id="aos-puzzle-track">
+            <div class="puzzle-fill" id="aos-puzzle-fill"></div>
+            <svg class="puzzle-target" id="aos-puzzle-target" width="34" height="34" viewBox="0 0 34 34">
+              <g fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-dasharray="3 3">
+                <rect x="4" y="4" width="22" height="22" rx="4" />
+                <circle cx="26" cy="15" r="6" />
+              </g>
+            </svg>
+            <div class="puzzle-piece" id="aos-puzzle-piece" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="퍼즐 조각, 화살표 키 또는 드래그로 이동">
+              <svg width="34" height="34" viewBox="0 0 34 34">
+                <g fill="#ffffff">
+                  <rect x="4" y="4" width="22" height="22" rx="4" />
+                  <circle cx="26" cy="15" r="6" />
+                </g>
+              </svg>
+            </div>
+          </div>
+          <p class="puzzle-status" id="aos-puzzle-status">조각을 드래그해서 빈 칸에 맞춰보세요</p>
+        </div>
+      </div>
+      <label class="apply-consent">
+        <input type="checkbox" name="privacy_consent" required />
+        제출한 이력서·포트폴리오는 채용 목적으로만 사용되며, 전형 종료 후 파기됩니다. 개인정보 수집·이용에 동의합니다. *
+      </label>
+      <button type="submit" class="btn-primary apply-submit">지원서 제출하기</button>
+      <p class="apply-note">파일 첨부가 어려우시면 <a href="mailto:koreasomoon@naver.com?subject=[지원] AOS 개발자 - 뉴런소프트" style="color:var(--gray-300);text-decoration:underline;">이메일로 직접 지원</a>도 가능합니다.</p>
+    </form>
+  </dialog>
+
+  <footer class="footer">
+    <div class="footer-logo">뉴런소프트</div>
+    <div class="footer-meta">주식회사 뉴런소프트 · 서울특별시 관악구 봉천로 545, 서울창업센터 관악</div>
+    <div class="footer-links">
+      <a href="/">홈</a>
+      <a href="/positions">채용 포지션</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var modal = document.getElementById('applyModal');
+      var puzzle;
+      function openModal() {
+        modal.showModal();
+        if (puzzle) puzzle.layout();
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { modal.classList.add('is-open'); });
+        });
+      }
+      function closeModal() {
+        if (!modal.classList.contains('is-open')) return;
+        modal.classList.remove('is-open');
+        var closed = false;
+        function finish() {
+          if (closed) return;
+          closed = true;
+          modal.close();
+        }
+        modal.addEventListener('transitionend', finish, { once: true });
+        setTimeout(finish, 260);
+      }
+      document.querySelectorAll('[data-open-apply]').forEach(function (btn) {
+        btn.addEventListener('click', openModal);
+      });
+      document.querySelectorAll('[data-close-apply]').forEach(function (btn) {
+        btn.addEventListener('click', closeModal);
+      });
+      modal.addEventListener('click', function (e) {
+        var r = modal.getBoundingClientRect();
+        var inside = r.top <= e.clientY && e.clientY <= r.top + r.height && r.left <= e.clientX && e.clientX <= r.left + r.width;
+        if (!inside) closeModal();
+      });
+      modal.addEventListener('cancel', function (e) {
+        e.preventDefault();
+        closeModal();
+      });
+
+      function setupPuzzle(prefix) {
+        var track = document.getElementById(prefix + '-puzzle-track');
+        var piece = document.getElementById(prefix + '-puzzle-piece');
+        var target = document.getElementById(prefix + '-puzzle-target');
+        var status = document.getElementById(prefix + '-puzzle-status');
+        var fill = document.getElementById(prefix + '-puzzle-fill');
+        var pieceW = 34;
+        var verified = false;
+        var dragging = false;
+        var startClientX = 0;
+        var startLeft = 0;
+        var maxX = 1;
+        var targetX = 0;
+
+        function layout() {
+          var trackW = track.clientWidth;
+          maxX = Math.max(1, trackW - pieceW);
+          targetX = Math.round(maxX * (0.45 + Math.random() * 0.4));
+          target.style.left = targetX + 'px';
+          verified = false;
+          piece.classList.remove('is-success');
+          status.textContent = '조각을 드래그해서 빈 칸에 맞춰보세요';
+          status.classList.remove('is-success');
+          piece.setAttribute('aria-label', '퍼즐 조각, 화살표 키 또는 드래그로 이동');
+          setPos(0);
+        }
+        layout();
+
+        function setPos(x) {
+          x = Math.max(0, Math.min(maxX, x));
+          piece.style.left = x + 'px';
+          if (fill) fill.style.width = (x + pieceW / 2) + 'px';
+          piece.setAttribute('aria-valuenow', String(Math.round((x / maxX) * 100)));
+          return x;
+        }
+
+        function checkSuccess(x) {
+          if (Math.abs(x - targetX) <= 8) {
+            verified = true;
+            setPos(targetX);
+            piece.classList.add('is-success');
+            status.textContent = '확인되었습니다';
+            status.classList.add('is-success');
+            piece.setAttribute('aria-label', '사람 확인 완료');
+          } else {
+            verified = false;
+            setPos(0);
+            status.textContent = '아쉬워요, 다시 옮겨보세요';
+            status.classList.remove('is-success');
+          }
+        }
+
+        function pointerDown(e) {
+          if (verified) return;
+          dragging = true;
+          piece.classList.add('is-dragging');
+          startClientX = e.touches ? e.touches[0].clientX : e.clientX;
+          startLeft = parseFloat(piece.style.left || '0');
+          e.preventDefault();
+        }
+        function pointerMove(e) {
+          if (!dragging) return;
+          var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          setPos(startLeft + (clientX - startClientX));
+        }
+        function pointerUp() {
+          if (!dragging) return;
+          dragging = false;
+          piece.classList.remove('is-dragging');
+          checkSuccess(parseFloat(piece.style.left || '0'));
+        }
+
+        piece.addEventListener('mousedown', pointerDown);
+        window.addEventListener('mousemove', pointerMove);
+        window.addEventListener('mouseup', pointerUp);
+        piece.addEventListener('touchstart', pointerDown, { passive: false });
+        window.addEventListener('touchmove', pointerMove, { passive: false });
+        window.addEventListener('touchend', pointerUp);
+        piece.addEventListener('keydown', function (e) {
+          if (verified) return;
+          var cur = parseFloat(piece.style.left || '0');
+          if (e.key === 'ArrowRight') { setPos(cur + 8); e.preventDefault(); }
+          else if (e.key === 'ArrowLeft') { setPos(cur - 8); e.preventDefault(); }
+          else if (e.key === 'Enter' || e.key === ' ') { checkSuccess(parseFloat(piece.style.left || '0')); e.preventDefault(); }
+        });
+
+        return { isVerified: function () { return verified; }, layout: layout };
+      }
+
+      puzzle = setupPuzzle('aos');
+      var form = modal.querySelector('.apply-form');
+      form.addEventListener('submit', function (e) {
+        if (!puzzle.isVerified()) {
+          e.preventDefault();
+          var status = document.getElementById('aos-puzzle-status');
+          status.textContent = '퍼즐을 먼저 맞춰주세요.';
+          status.classList.remove('is-success');
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
