@@ -438,6 +438,8 @@ button.btn-apply, button.btn-primary { border: none; cursor: pointer; font-famil
 .apply-field { display: flex; flex-direction: column; gap: 6px; }
 .apply-field label { font-size: 13px; font-weight: 600; color: var(--gray-300); }
 .apply-field .apply-hint { font-weight: 400; color: var(--gray-500); }
+.apply-file-error { font-size: 12px; color: #ff8a7a; margin-top: -8px; display: none; }
+.apply-file-error.is-visible { display: block; }
 .apply-field input[type="text"],
 .apply-field input[type="email"],
 .apply-field input[type="tel"],

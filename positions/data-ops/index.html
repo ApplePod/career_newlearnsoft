@@ -113,6 +113,7 @@
         <label for="data-portfolio">포트폴리오 <span class="apply-hint">(선택, 5MB 이하)</span></label>
         <input type="file" id="data-portfolio" name="portfolio" accept=".pdf,.doc,.docx,.ppt,.pptx,.zip" />
       </div>
+      <p class="apply-file-error" id="data-file-error"></p>
       <div class="apply-field">
         <label>사람 확인 * — 조각을 옮겨 빈 자리에 맞춰주세요</label>
         <div class="puzzle" id="data-puzzle">
@@ -284,7 +285,41 @@
 
       puzzle = setupPuzzle('data');
       var form = modal.querySelector('.apply-form');
+      var MAX_FILE_SIZE = 5 * 1024 * 1024;
+      var MAX_TOTAL_SIZE = 10 * 1024 * 1024;
+      var resumeInput = document.getElementById('data-resume');
+      var portfolioInput = document.getElementById('data-portfolio');
+      var fileError = document.getElementById('data-file-error');
+      function checkFileSizes() {
+        var resumeFile = resumeInput.files[0];
+        var portfolioFile = portfolioInput.files[0];
+        var total = (resumeFile ? resumeFile.size : 0) + (portfolioFile ? portfolioFile.size : 0);
+        if (resumeFile && resumeFile.size > MAX_FILE_SIZE) {
+          fileError.textContent = '이력서 파일이 5MB를 초과했습니다.';
+          fileError.classList.add('is-visible');
+          return false;
+        }
+        if (portfolioFile && portfolioFile.size > MAX_FILE_SIZE) {
+          fileError.textContent = '포트폴리오 파일이 5MB를 초과했습니다.';
+          fileError.classList.add('is-visible');
+          return false;
+        }
+        if (total > MAX_TOTAL_SIZE) {
+          fileError.textContent = '첨부파일 전체 용량이 10MB를 초과했습니다. 파일을 줄여주세요.';
+          fileError.classList.add('is-visible');
+          return false;
+        }
+        fileError.classList.remove('is-visible');
+        return true;
+      }
+      resumeInput.addEventListener('change', checkFileSizes);
+      portfolioInput.addEventListener('change', checkFileSizes);
+
       form.addEventListener('submit', function (e) {
+        if (!checkFileSizes()) {
+          e.preventDefault();
+          return;
+        }
         if (!puzzle.isVerified()) {
           e.preventDefault();
           var status = document.getElementById('data-puzzle-status');
